@@ -16,18 +16,30 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            custom_authenticator: App\Security\Authenticator
+            logout:
+                path: app_logout
+                target: app_login
 
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#the-firewall
+            form_login:
+                enable_csrf: true
+                use_referer: true
+                
+            entry_point: form_login
 
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+            remember_me:
+                secret:   '%kernel.secret%' # required
+                lifetime: 13000000 # 2 weeks in seconds
+                always_remember_me: true
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
-    access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+            login_throttling:
+                max_attempts: 4
+                interval: '5 minutes'
+
+    role_hierarchy:
+        ROLE_USER:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
 when@test:
     security:

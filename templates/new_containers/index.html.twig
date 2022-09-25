@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Containers index{% endblock %}
+
+{% block body %}
+    <h1>Bouteilles neuves index</h1>
+
+
+        {% for nc in new_containers %}
+            <div class="flex flex-row justify-center">
+                <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                    <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">{{nc.gaz}}</h5>
+                        <p class="text-gray-700 text-base mb-4">
+                            Poid restant {{nc.initial_weight}}
+                        </p>
+                     <a type="button" class="inline-block rounded-full bg-fushia-600 text-white leading-normal uppercase shadow-md hover:bg-fushia-700 hover:shadow-lg focus:bg-fushia-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-9 h-9">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+        {% else %}
+            Aucune bouteille en stock
+        {% endfor %}
+
+
+    {# <a href="{{ path('app_new_containers_new') }}">Create new</a> #}
+{% endblock %}

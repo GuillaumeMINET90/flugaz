@@ -1,3 +1,39 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.btn-dark{
+    @apply inline-block  m-3 px-6 py-2.5 bg-gray-800 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out;
+}
+.btn-green{
+    @apply inline-block m-3 px-6 py-2.5 bg-green-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out;
+}
+.btn-yellow{
+    @apply inline-block m-3 px-6 py-2.5 bg-yellow-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md  active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out;
+}
+.btn-green:hover, .btn-dark:hover, .btn-blue:hover{
+    @apply shadow-lg;
+}
+.btn-dark:focus{
+    @apply bg-gray-900 shadow-lg outline-none ring-0;
+}
+.btn-green:focus{
+    @apply bg-green-600 shadow-lg outline-none ring-0;
+}
+.btn-yellow:focus{
+    @apply bg-yellow-900 shadow-lg outline-none ring-0;
+}
+
+@screen md{
+    .btn-dark{
+        @apply w-80;
+    }
+    .btn-green{
+        @apply w-80;
+    }
+    .btn-yellow{
+        @apply w-80;
+    }
+
+
+}

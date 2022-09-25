@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NewContainers{% endblock %}
+
+{% block body %}
+    <h1>NewContainers</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ new_container.id }}</td>
+            </tr>
+            <tr>
+                <th>Number</th>
+                <td>{{ new_container.number }}</td>
+            </tr>
+            <tr>
+                <th>Gaz</th>
+                <td>{{ new_container.gaz }}</td>
+            </tr>
+            <tr>
+                <th>Initial_weight</th>
+                <td>{{ new_container.initialWeight }}</td>
+            </tr>
+            <tr>
+                <th>Purchase_date</th>
+                <td>{{ new_container.purchaseDate ? new_container.purchaseDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Return_date</th>
+                <td>{{ new_container.returnDate ? new_container.returnDate|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_new_containers_index') }}">back to list</a>
+
+    <a href="{{ path('app_new_containers_edit', {'id': new_container.id}) }}">edit</a>
+
+    {{ include('new_containers/_delete_form.html.twig') }}
+{% endblock %}
