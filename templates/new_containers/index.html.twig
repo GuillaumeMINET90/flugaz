@@ -3,21 +3,27 @@
 {% block title %}New Containers index{% endblock %}
 
 {% block body %}
-    <h1>Bouteilles neuves index</h1>
 
+    <h1 class="flex my-13 text-gray-900 text-2xl font-bold uppercase justify-center">Choisir une bouteille</h1>
 
-        {% for nc in new_containers %}
-            <div class="flex flex-row justify-center">
-                <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
-                    <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">{{nc.gaz}}</h5>
+        {% for nc in newContainers %}
+
+            <div class="flex m-4 flex-row justify-center">
+                <div class="inline-block p-6 rounded-lg shadow-lg bg-white w-full">
+                    <h5 class="text-gray-900 text-xl leading-tight font-medium mb-4">{{nc.gaz}} &emsp;&emsp; N° {{nc.number}} </h5>
                         <p class="text-gray-700 text-base mb-4">
-                            Poid restant {{nc.initial_weight}}
-                        </p>
-                     <a type="button" class="inline-block rounded-full bg-fushia-600 text-white leading-normal uppercase shadow-md hover:bg-fushia-700 hover:shadow-lg focus:bg-fushia-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-9 h-9">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                        </svg>
-                    </a>
+                            {% for vr in volumeRest %}
+                                {% set val = 0 %}
+                                    {% if nc.id == vr.container %}
+                                        {% set val = val + vr.totalQ %}
+                                    {% endif %}
+                                Poid restant {{nc.initialWeight - val}} kg
+                                
+                            {% endfor %}
+                    <button type="button" onclick="window.location.href = '{{path('app_new_containers_new', {id:nc.id})}}'" class="float-right inline-block px-3 py-2 border-2 border-fuchsia-600 text-fuchsia-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                        <i class="bi bi-check-lg text-xl"></i>
+                    </button>
+                    </p>
                 </div>
             </div>
 

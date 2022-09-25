@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\NewContainersRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\NewContainersRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: NewContainersRepository::class)]
+#[UniqueEntity(fields: ['number' ], message: 'Ce numéro de bouteille existe déjà.')]
 class NewContainers
 {
     #[ORM\Id]
@@ -37,6 +39,9 @@ class NewContainers
 
     #[ORM\OneToMany(mappedBy: 'new_container', targetEntity: NewContainersMovements::class)]
     private Collection $newContainersMovements;
+
+    #[ORM\Column(length: 80)]
+    private ?string $bill_number = null;
 
     public function __construct()
     {
@@ -146,6 +151,18 @@ class NewContainers
                 $newContainersMovement->setNewContainer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBillNumber(): ?string
+    {
+        return $this->bill_number;
+    }
+
+    public function setBillNumber(string $bill_number): self
+    {
+        $this->bill_number = $bill_number;
 
         return $this;
     }

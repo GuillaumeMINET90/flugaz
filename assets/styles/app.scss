@@ -2,38 +2,49 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.btn-dark{
-    @apply inline-block  m-3 px-6 py-2.5 bg-gray-800 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out;
-}
-.btn-green{
-    @apply inline-block m-3 px-6 py-2.5 bg-green-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out;
-}
-.btn-yellow{
-    @apply inline-block m-3 px-6 py-2.5 bg-yellow-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md  active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out;
-}
-.btn-green:hover, .btn-dark:hover, .btn-blue:hover{
-    @apply shadow-lg;
-}
-.btn-dark:focus{
-    @apply bg-gray-900 shadow-lg outline-none ring-0;
-}
-.btn-green:focus{
-    @apply bg-green-600 shadow-lg outline-none ring-0;
-}
-.btn-yellow:focus{
-    @apply bg-yellow-900 shadow-lg outline-none ring-0;
-}
 
-@screen md{
+// Boutons
     .btn-dark{
-        @apply w-80;
+        @apply inline-block  m-3 px-6 py-2.5 bg-gray-800 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out;
     }
     .btn-green{
-        @apply w-80;
+        @apply inline-block m-3 px-6 py-2.5 bg-green-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out;
     }
     .btn-yellow{
-        @apply w-80;
+        @apply inline-block m-3 px-6 py-2.5 bg-yellow-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md  active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out;
+    }
+    .btn-green:hover, .btn-dark:hover, .btn-blue:hover{
+        @apply shadow-lg;
+    }
+    .btn-dark:focus{
+        @apply bg-gray-900 shadow-lg outline-none ring-0;
+    }
+    .btn-green:focus{
+        @apply bg-green-600 shadow-lg outline-none ring-0;
+    }
+    .btn-yellow:focus{
+        @apply bg-yellow-900 shadow-lg outline-none ring-0;
     }
 
 
+
+    @screen md{
+        .btn-dark{
+            @apply w-80;
+        }
+        .btn-green{
+            @apply w-80;
+        }
+        .btn-yellow{
+            @apply w-80;
+        }
+    }
+
+// Formualaire
+
+.form-the-line{
+    @apply form-control  block mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
+}
+.form-datepicker-wiwi{
+    @apply form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
 }

@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\TransferContainersRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TransferContainersRepository;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: TransferContainersRepository::class)]
+#[UniqueEntity(fields: ['number' ], message: 'Ce numéro de bouteille existe déjà.')]
 class TransferContainers
 {
     #[ORM\Id]

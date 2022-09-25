@@ -4,25 +4,27 @@ namespace App\Controller;
 
 use App\Entity\NewContainers;
 use App\Form\NewContainersType;
+use App\Repository\NewContainersMovementsRepository;
 use App\Repository\NewContainersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/new/containers')]
+#[Route('/new_containers_stocked')]
 class NewContainersController extends AbstractController
 {
     #[Route('/', name: 'app_new_containers_index', methods: ['GET'])]
-    public function index(NewContainersRepository $newContainersRepository): Response
+    public function index(NewContainersRepository $newContainersRepository, NewContainersMovementsRepository $newContainersMovementsRepository): Response
     {
-        return $this->render('new_containers/index.html.twig', [
-            'new_containers' => $newContainersRepository->findAll(),
-        ]);
+        $newContainers = $newContainersRepository->findBy(['return_date' => Null]);
+        $volumeRest = $newContainersMovementsRepository->containersVolumeRest();
+        //dd($volumeRest);
+        return $this->render('new_containers/index.html.twig', compact('newContainers', 'volumeRest'));
     }
 
-    #[Route('/new', name: 'app_new_containers_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, NewContainersRepository $newContainersRepository): Response
+    #[Route('/new_{id}', name: 'app_new_containers_new', methods: ['GET', 'POST'])]
+    public function new($id, Request $request, NewContainersRepository $newContainersRepository): Response
     {
         $newContainer = new NewContainers();
         $form = $this->createForm(NewContainersType::class, $newContainer);

@@ -39,20 +39,20 @@ class NewContainersMovementsRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return NewContainersMovements[] Returns an array of NewContainersMovements objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('n')
-//            ->andWhere('n.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('n.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return NewContainersMovements [] Returns an array of NewContainersMovements objects
+     */
+    public function containersVolumeRest(): array
+    {
+        return $this->createQueryBuilder('n')
+            ->select('(n.new_container) AS container , SUM(n.quantity_injected) AS totalQ ')
+            ->leftJoin('n.new_container', 'c')
+            ->andWhere('c.return_date IS NULL')
+            ->orderBy('n.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?NewContainersMovements
 //    {
