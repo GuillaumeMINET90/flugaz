@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NewContainersMovements index{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4">
+    <div class="grid w-full justify-center">
+        <h1 class="text-2xl text-gray-800 font-bold m-4 ">
+            Tableau des charges
+        </h1>
+    </div>
+
+  
+    <div class="flex flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                <div class="overflow-hidden">
+                    <table class="min-w-full text-center">
+                        <thead class="border-b bg-white">
+                            <tr>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2">
+                                  Id
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2">
+                                  Q chargée
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2">
+                                  Date
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2">
+                                  Client
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-2">
+                                  Modifier
+                                </th>
+                            </tr>
+                        </thead class="border-b">
+                        <tbody>
+                        {% for new_containers_movement in new_containers_movements %}
+                            <tr class="bg-white border-b">
+                                <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ new_containers_movement.id }}
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                  {{ new_containers_movement.quantityInjected }}
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                  {{ new_containers_movement.date ? new_containers_movement.date|date('Y-m-d') : '' }}
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                  {{ new_containers_movement.customer }}
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                  <a href="{{ path('app_new_containers_movements_edit', {'id': new_containers_movement.id}) }}">edit</a>
+                                </td>
+                            </tr class="bg-white border-b">
+                        {% else %}
+                            <tr>
+                                <td >Aucune charge effectuée</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+
+        
+            {# <tr>
+                <td>{{ new_containers_movement.id }}</td>
+                <td>{{ new_containers_movement.quantityRest }}</td>
+                <td>{{ new_containers_movement.quantityInjected }}</td>
+                <td>{{ new_containers_movement.date ? new_containers_movement.date|date('Y-m-d') : '' }}</td>
+                <td>{{ new_containers_movement.cerfaNumber }}</td>
+                <td>{{ new_containers_movement.customer }}</td>
+                <td>{{ new_containers_movement.remark }}</td>
+                <td>
+                    <a href="{{ path('app_new_containers_movements_show', {'id': new_containers_movement.id}) }}">show</a>
+                    <a href="{{ path('app_new_containers_movements_edit', {'id': new_containers_movement.id}) }}">edit</a>
+                </td>
+            </tr> #}
+
+
+
+    <a href="{{ path('app_new_containers_movements_new') }}">Create new</a>
+
+</div>
+{% endblock %}

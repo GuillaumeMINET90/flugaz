@@ -48,7 +48,7 @@ class NewContainersMovementsRepository extends ServiceEntityRepository
             ->select('(n.new_container) AS container , SUM(n.quantity_injected) AS totalQ ')
             ->leftJoin('n.new_container', 'c')
             ->andWhere('c.return_date IS NULL')
-            ->orderBy('n.id', 'ASC')
+            ->groupBy('n.new_container')
             ->getQuery()
             ->getResult()
         ;

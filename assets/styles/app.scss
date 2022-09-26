@@ -11,19 +11,29 @@
         @apply inline-block m-3 px-6 py-2.5 bg-green-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out;
     }
     .btn-yellow{
-        @apply inline-block m-3 px-6 py-2.5 bg-yellow-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md  active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out;
+        @apply inline-block m-3 px-6 py-2.5 bg-yellow-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out;
     }
-    .btn-green:hover, .btn-dark:hover, .btn-blue:hover{
+    .btn-green-validation{
+        @apply inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out;
+    }
+    .btn-blue-return{
+        @apply inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out;
+    }
+
+    .btn-green:hover, .btn-dark:hover, .btn-blue:hover, .btn-green-validation:hover, .btn-blue-return:hover{
         @apply shadow-lg;
     }
     .btn-dark:focus{
         @apply bg-gray-900 shadow-lg outline-none ring-0;
     }
-    .btn-green:focus{
+    .btn-green:focus, .btn-green-validation:focus {
         @apply bg-green-600 shadow-lg outline-none ring-0;
     }
     .btn-yellow:focus{
         @apply bg-yellow-900 shadow-lg outline-none ring-0;
+    }
+    .btn-blue-return:focus{
+        @apply bg-blue-700 shadow-lg outline-none ring-0;
     }
 
 
@@ -47,4 +57,10 @@
 }
 .form-datepicker-wiwi{
     @apply form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
+}
+.form-the-line-medium{
+    @apply  form-control  block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+}
+.form-select-medium{
+    @apply form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
 }

@@ -18,7 +18,7 @@ class NewContainersMovements
     #[ORM\JoinColumn(nullable: false)]
     private ?NewContainers $new_container = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?float $quantity_rest = null;
 
     #[ORM\Column]

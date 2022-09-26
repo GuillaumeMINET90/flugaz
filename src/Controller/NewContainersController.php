@@ -17,14 +17,14 @@ class NewContainersController extends AbstractController
     #[Route('/', name: 'app_new_containers_index', methods: ['GET'])]
     public function index(NewContainersRepository $newContainersRepository, NewContainersMovementsRepository $newContainersMovementsRepository): Response
     {
-        $newContainers = $newContainersRepository->findBy(['return_date' => Null]);
+        $newContainers = $newContainersRepository->findBy(['return_date' => Null], ['gaz' => 'ASC']);
         $volumeRest = $newContainersMovementsRepository->containersVolumeRest();
         //dd($volumeRest);
         return $this->render('new_containers/index.html.twig', compact('newContainers', 'volumeRest'));
     }
 
-    #[Route('/new_{id}', name: 'app_new_containers_new', methods: ['GET', 'POST'])]
-    public function new($id, Request $request, NewContainersRepository $newContainersRepository): Response
+    #[Route('/new', name: 'app_new_containers_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, NewContainersRepository $newContainersRepository): Response
     {
         $newContainer = new NewContainers();
         $form = $this->createForm(NewContainersType::class, $newContainer);

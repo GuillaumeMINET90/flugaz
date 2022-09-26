@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New NewContainers{% endblock %}
+{% block title %}New NewContainersMovements{% endblock %}
 
 {% block body %}
 <div class="container mx-auto px-4">
     <div class="grid w-full justify-center">
         <h1 class="text-2xl text-gray-800 font-bold m-4 ">
-            Enregistrer une bouteille
+            Enregistrer une charge
         </h1>
     </div>
-        {{ include('new_containers/_form.html.twig') }}
+        {{ include('new_containers_movements/_form.html.twig') }}
 
 </div>
+
+
 {% endblock %}

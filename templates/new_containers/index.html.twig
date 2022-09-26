@@ -4,33 +4,35 @@
 
 {% block body %}
 
-    <h1 class="flex my-13 text-gray-900 text-2xl font-bold uppercase justify-center">Choisir une bouteille</h1>
+<div class="container mx-auto px-4">
+    <div class="grid w-full justify-center">
+        <h1 class="text-2xl text-gray-800 font-bold uppercase m-4 ">
+            Choisir une bouteille
+        </h1>
+    </div>
+  
 
         {% for nc in newContainers %}
-
             <div class="flex m-4 flex-row justify-center">
-                <div class="inline-block p-6 rounded-lg shadow-lg bg-white w-full">
-                    <h5 class="text-gray-900 text-xl leading-tight font-medium mb-4">{{nc.gaz}} &emsp;&emsp; N° {{nc.number}} </h5>
+                <div class="inline-block p-6 rounded-lg shadow-lg bg-slate-50 w-full">
+                    <h5 class="text-gray-900 text-xl leading-tight font-medium mb-4"> <span class="font-bold">{{nc.gaz}}</span> &emsp;&emsp; N° {{nc.number}} </h5>
                         <p class="text-gray-700 text-base mb-4">
                             {% for vr in volumeRest %}
-                                {% set val = 0 %}
+                                {% set val = nc.initialWeight %}
                                     {% if nc.id == vr.container %}
-                                        {% set val = val + vr.totalQ %}
+                                        {% set val = val - vr.totalQ %}
                                     {% endif %}
-                                Poid restant {{nc.initialWeight - val}} kg
-                                
+                                    <i> Quantité restante:</i> <span class="font-bold">{{val}}</span> kg    
+
                             {% endfor %}
-                    <button type="button" onclick="window.location.href = '{{path('app_new_containers_new', {id:nc.id})}}'" class="float-right inline-block px-3 py-2 border-2 border-fuchsia-600 text-fuchsia-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                    <button type="button" onclick="window.location.href = '{{path('app_new_containers_movements_new', {id:nc.id})}}'" class="float-right inline-block px-3 py-2 border-2 border-fuchsia-600 text-fuchsia-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
                         <i class="bi bi-check-lg text-xl"></i>
                     </button>
                     </p>
                 </div>
             </div>
-
-        {% else %}
-            Aucune bouteille en stock
         {% endfor %}
 
 
-    {# <a href="{{ path('app_new_containers_new') }}">Create new</a> #}
+</div>>
 {% endblock %}

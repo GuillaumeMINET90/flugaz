@@ -3,14 +3,17 @@
 namespace App\Form;
 
 use App\Entity\NewContainers;
+use App\Entity\Vendors;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class NewContainersType extends AbstractType
 {
@@ -23,44 +26,52 @@ class NewContainersType extends AbstractType
                 'R407C' => 'R407C',
                 'R410A' => 'R410A',
             ];
+
         $builder
             ->add('number', IntegerType::class, [
-                'label' => 'N° de bouteille',
-                'attr' => ['class' => 'form-the-line'],
+                'label' => false,
+                'attr' => ['class' => 'form-the-line-medium'],
                 'required'=> true,
             ])
             ->add('gaz', ChoiceType::class, [
-                'label' => 'Nature du gaz',
-                'attr' => ['class' => 'form-the-line'],
+                'label' => false,
+                'attr' => ['class' => 'form-select-medium'],
                 'placeholder' => 'Sélectionner',
                 'choices'=> $gaz,
                 'required'=> true,
 
             ])
             ->add('initial_weight', NumberType::class, [
-                'label' => 'Poid du gaz en kg',
-                'attr' => ['class' => 'form-the-line'],
+                'label' => false,
+                'attr' => ['class' => 'form-the-line-medium'],
                 'required'=> true,
             ])
             ->add('purchase_date', DateType::class, [
-                'label' => 'Date d\'achat',
+                'label' => false,
                 'widget' => 'single_text',
                 'attr' => ['class' => 'form-datepicker-wiwi'],
                 'required'=> true,
             ])
             ->add('return_date', DateType::class, [
-                'label' => 'Date de retour',
+                'label' => false,
                 'widget' => 'single_text',
                 'attr' => ['class' => 'form-datepicker-wiwi'],
                 'required'=> false,
                 ])
-            ->add('vendor', ChoiceType::class, [
-                'label' => 'Fournisseur',
-                'attr' => ['class' => 'form-the-line'],
+            ->add('vendor', EntityType::class, [
+                'label' => false,
+                'placeholder' => 'Sélectionner',
+                'attr' => ['class' => 'form-select-medium'],
+                'class' => Vendors::class,
+                'query_builder' => function (EntityRepository $er){
+                                    return $er->createQueryBuilder('v')
+                                    ->orderBy('v.name', 'ASC');},
+                'choice_label' => 'name',
+                'required' => true,
             ])
             ->add('bill_number', TextType::class, [
-                'label' => 'N° du bon de livraison',
-                'attr' => ['class' => 'form-datepicker-wiwi'],
+                'label' => false,
+                'attr' => ['class' => 'form-the-line-medium'],
                 'required'=> false,             
             ])
         ;
