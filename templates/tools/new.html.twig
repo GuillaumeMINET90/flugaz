@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Tools{% endblock %}
+
+{% block body %}
+    <h1>Create new Tools</h1>
+
+    {{ include('tools/_form.html.twig') }}
+
+    <a href="{{ path('app_tools_index') }}">back to list</a>
+{% endblock %}

@@ -7,22 +7,22 @@
 <section class="flex-column justify-center p-10">
 
     {# container #}
-    <div class="flex m-5 justify-center">
-        <a href="{{ path('app_container')}}">
+    <div class="flex m-auto justify-center mt-20">
+        <a  href="{{ path('app_container')}}">
             <div class="flex w-50 h-50 flex-row rounded-lg  bg-gray-100 shadow-lg">
                 <h5 class="text-gray-900 sm:text-2xl font-bold justify-center">Bouteilles</h5>
-                <img class="object-cover h-70 w-60 object-cover rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ asset('images/nc.png')}}" alt="" />
+                <img class="object-cover mx-auto h-auto w-60 object-cover rounded-t-lg" src="{{ asset('images/nc.png')}}" alt="" />
             </div>
         </a>
     </div>
 
     {# Tools #}
-    <div class="flex flex-col sm:flex-row justify-center">
-        <div class="flex m-5 justify-center">
-            <a href="#">      
-                <div class="flex w-50 h-100 flex-col md:flex-row rounded-lg bg-gray-100 shadow-lg">
-                    <h5 class="text-gray-900 sm:text-2xl font-bold">Outillage</h5>
-                    <img class=" object-fill h-60 w-60 rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ asset('images/tools.png')}}" alt="" />
+
+        <div class="flex w-full mt-12 m-auto justify-center">
+            <a href="{{ path('app_tools_index')}}" class="w-full flex ">      
+                <div class="flex w-full flex-col justify-center rounded-lg bg-gray-100 shadow-lg">
+                    <h5 class="text-gray-900 font-bold">Outillage</h5>
+                    <img class=" object-fill mx-auto h-60 w-60 rounded-t-lg " src="{{ asset('images/tools.png')}}" alt="" />
                 </div>
             </a>
         </div>

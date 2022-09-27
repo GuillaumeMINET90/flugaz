@@ -10,7 +10,7 @@
                 <input type="text" class="form-the-line-medium" id="container_number" value="{{container.number}}" readonly/>
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6 ">
+        <div class="grid grid-cols-1 gap-6 hidden">
             <div class="mb-3 xl:w-96">
                 <label for="new_containers_movements_technicien" class="form-label inline-block text-gray-600">
                     Technicien
@@ -18,12 +18,12 @@
                 {{ form_row(form.technicien)}}   
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6 hidden">
+        <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="technicien_name" class="form-label inline-block text-gray-600">
                     Techncien
                 </label>
-                <input type="text" class="form-the-line-medium" id="technicien_name" value="{{app.user}}" readonly/>
+                <input type="text" class="form-the-line-medium" id="technicien_name" value="{{app.user.username}}" readonly/>
             </div>
         </div>
         <div class="grid grid-cols-1 gap-6">
@@ -81,7 +81,7 @@
         <div class="flex space-x-2 mt-3 justify-center">
             <div>
                 <button type="button" onclick="window.location.href = '{{ path('app_new_containers_movements_index') }}'" class="btn-blue-return"> 
-                    retour
+                    Tableau
                 </button>
 
                 <button type="submit" class="btn-green-validation">

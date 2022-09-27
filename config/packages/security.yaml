@@ -32,9 +32,9 @@ security:
                 lifetime: 13000000 # 2 weeks in seconds
                 always_remember_me: true
 
-            login_throttling:
-                max_attempts: 4
-                interval: '5 minutes'
+            # login_throttling:
+            #     max_attempts: 4
+            #     interval: '1 minutes'
 
     role_hierarchy:
         ROLE_USER:

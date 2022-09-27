@@ -1,19 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}NewContainersMovements index{% endblock %}
+{% block title %}Tools index{% endblock %}
 
 {% block body %}
 <div class="container mx-auto mt-24 px-4">
     <div class="grid w-full justify-center">
         <h1 class="text-2xl text-gray-800 font-bold m-4 ">
-            Tableau des charges
+            Liste outillage
         </h1>
     </div>
     <div class="grid w-full justify-center">
-        <h3 class="text-xl text-gray-500 font-bold m-2 ">
-            Bouteille N° {{container.number}}
-        </h3>
+        <a href="{{ path('app_tools_new') }}" class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">
+        <i class="bi bi-plus-circle text-sm font-bold mr-2"> &nbsp; Ajouter outillage</i></a>
     </div>
+
+    
 
     <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -23,16 +24,16 @@
                         <thead class="border-b bg-white">
                             <tr>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
-                                  Id
+                                  Type
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
-                                  Charge
+                                  Denomination
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
-                                  Date
+                                  N*série
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
-                                  Client
+                                  Prochain contrôle
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
                                   Modifier
@@ -40,23 +41,29 @@
                             </tr>
                         </thead class="border-b">
                         <tbody>
-                        {% for ncm in new_containers_movements %}
+                        {% for tool in tools %}
                             <tr class="bg-white border-b">
+                            {% if today > tool.nextControl|date('d-m-Y') %}
+                                <td class="px-6 py-2 whitespace-nowrap text-sm font-bold text-red-600">
+                                    {{ tool.type }}
+                                </td>
+                            {% else %}
                                 <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {{ ncm.id }}
+                                    {{ tool.type }}
+                                </td>
+                            {% endif %}
+                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                  {{ tool.denomination }}
                                 </td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                                  {{ ncm.quantityInjected }} <span class="text-gray-400"> kg</span> 
+                                  {{ tool.serialNumber }}
                                 </td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                                  {{ ncm.date ? ncm.date|date('Y-m-d') : '' }}
+                                  {{ tool.nextControl ? tool.nextControl|date('d-m-Y') : '' }}
                                 </td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                                  {{ ncm.customer }}
-                                </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                                {% if app.user.username == ncm.technicien.username %}
-                                <button type="button" onclick="window.location.href = '{{ path('app_new_containers_movements_edit', {id: ncm.id}) }}'" class="inline-block px-2 py-1 border-2 border-orange-600 text-orange-700 font-medium leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
+                                {% if app.user == tool.technicien %}
+                                <button type="button" onclick="window.location.href = '{{ path('app_tools_edit', {id: tool.id}) }}'" class="inline-block px-2 py-1 border-2 border-orange-600 text-orange-700 font-medium leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
                                     <i class="bi bi-arrow-repeat text-lg"></i>
                                 </button>
                                 {% endif %}
@@ -73,6 +80,7 @@
             </div>
         </div>
     </div>
-
 </div>
+
+
 {% endblock %}

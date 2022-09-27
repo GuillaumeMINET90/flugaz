@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\NewContainers;
 use App\Form\NewContainersType;
-use App\Repository\NewContainersMovementsRepository;
+use App\Form\NewContainersEditType;
 use App\Repository\NewContainersRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\NewContainersMovementsRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/new_containers_stocked')]
 class NewContainersController extends AbstractController
@@ -53,7 +54,7 @@ class NewContainersController extends AbstractController
     #[Route('/{id}/edit', name: 'app_new_containers_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, NewContainers $newContainer, NewContainersRepository $newContainersRepository): Response
     {
-        $form = $this->createForm(NewContainersType::class, $newContainer);
+        $form = $this->createForm(NewContainersEditType::class, $newContainer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

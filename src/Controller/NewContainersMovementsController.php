@@ -14,16 +14,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/new/containers/movements')]
 class NewContainersMovementsController extends AbstractController
 {
-    #[Route('/', name: 'app_new_containers_movements_index', methods: ['GET'])]
-    public function index(NewContainersMovementsRepository $newContainersMovementsRepository): Response
+    #[Route('/table_{id<\d+>?1}', name: 'app_new_containers_movements_index', methods: ['GET'])]
+    public function index($id, NewContainersRepository $newContainersRepository, NewContainersMovementsRepository $newContainersMovementsRepository): Response
     {
-        return $this->render('new_containers_movements/index.html.twig', [
-            'new_containers_movements' => $newContainersMovementsRepository->findAll(),
-        ]);
+        $container = $newContainersRepository->find($id);
+        $new_containers_movements = $newContainersMovementsRepository->findBy(['new_container' => $container]);
+        
+        return $this->render('new_containers_movements/index.html.twig', compact('container','new_containers_movements'));
     }
 
     #[Route('/new_{id<\d+>?1}', name: 'app_new_containers_movements_new', methods: ['GET', 'POST'])]
-    public function new($id, Request $request,NewContainersRepository $newContainersRepository, NewContainersMovementsRepository $newContainersMovementsRepository): Response
+    public function new($id, Request $request, NewContainersRepository $newContainersRepository, NewContainersMovementsRepository $newContainersMovementsRepository): Response
     {
         $container = $newContainersRepository->find($id);
         $user = $this->getUser();
