@@ -48,11 +48,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'technicien', targetEntity: Tools::class)]
     private Collection $tools;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: TransferContainers::class)]
+    private Collection $transferContainers;
+
     public function __construct()
     {
         $this->newContainersMovements = new ArrayCollection();
         $this->recoveryContainersMovements = new ArrayCollection();
         $this->tools = new ArrayCollection();
+        $this->transferContainers = new ArrayCollection();
     }
 
 
@@ -246,6 +250,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($tool->getTechnicien() === $this) {
                 $tool->setTechnicien(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TransferContainers>
+     */
+    public function getTransferContainers(): Collection
+    {
+        return $this->transferContainers;
+    }
+
+    public function addTransferContainer(TransferContainers $transferContainer): self
+    {
+        if (!$this->transferContainers->contains($transferContainer)) {
+            $this->transferContainers->add($transferContainer);
+            $transferContainer->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTransferContainer(TransferContainers $transferContainer): self
+    {
+        if ($this->transferContainers->removeElement($transferContainer)) {
+            // set the owning side to null (unless already changed)
+            if ($transferContainer->getUser() === $this) {
+                $transferContainer->setUser(null);
             }
         }
 

@@ -41,6 +41,12 @@ class TransferContainers
     #[ORM\Column]
     private ?int $volume = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $used_container = null;
+
+    #[ORM\ManyToOne(inversedBy: 'transferContainers')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -138,6 +144,30 @@ class TransferContainers
     public function setVolume(int $volume): self
     {
         $this->volume = $volume;
+
+        return $this;
+    }
+
+    public function isUsedContainer(): ?bool
+    {
+        return $this->used_container;
+    }
+
+    public function setUsedContainer(?bool $used_container): self
+    {
+        $this->used_container = $used_container;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

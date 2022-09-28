@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TransferContainers index{% endblock %}
+
+{% block body %}
+    <h1>TransferContainers index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Number</th>
+                <th>Gaz</th>
+                <th>Tare</th>
+                <th>Purchase_date</th>
+                <th>Return_date</th>
+                <th>Total_weight</th>
+                <th>Volume</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transfer_container in transfer_containers %}
+            <tr>
+                <td>{{ transfer_container.id }}</td>
+                <td>{{ transfer_container.number }}</td>
+                <td>{{ transfer_container.gaz }}</td>
+                <td>{{ transfer_container.tare }}</td>
+                <td>{{ transfer_container.purchaseDate ? transfer_container.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ transfer_container.returnDate ? transfer_container.returnDate|date('Y-m-d') : '' }}</td>
+                <td>{{ transfer_container.totalWeight }}</td>
+                <td>{{ transfer_container.volume }}</td>
+                <td>
+                    <a href="{{ path('app_transfer_containers_show', {'id': transfer_container.id}) }}">show</a>
+                    <a href="{{ path('app_transfer_containers_edit', {'id': transfer_container.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_transfer_containers_new') }}">Create new</a>
+{% endblock %}
