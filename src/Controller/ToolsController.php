@@ -18,8 +18,8 @@ class ToolsController extends AbstractController
     {
             $user = $this->getUser();
             $today = date('d-m-Y');
-            $tools = $toolsRepository->findAll();
-            $myTools = $toolsRepository->findBy(['technicien' => $user]);
+            $allTools = $toolsRepository->findAll();
+            $tools = $toolsRepository->findBy(['technicien' => $user]);
         return $this->render('tools/index.html.twig', compact('tools', 'today'));
     }
 
@@ -28,6 +28,7 @@ class ToolsController extends AbstractController
     {
         $tool = new Tools();
         $form = $this->createForm(ToolsType::class, $tool);
+        $form->get('technicien')->setData($this->getUser());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -36,18 +37,13 @@ class ToolsController extends AbstractController
             return $this->redirectToRoute('app_tools_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tools/new.html.twig', [
-            'tool' => $tool,
-            'form' => $form,
-        ]);
+        return $this->renderForm('tools/new.html.twig', compact('tool', 'form'));
     }
 
     #[Route('/{id}', name: 'app_tools_show', methods: ['GET'])]
     public function show(Tools $tool): Response
     {
-        return $this->render('tools/show.html.twig', [
-            'tool' => $tool,
-        ]);
+        return $this->render('tools/show.html.twig', compact('tool'));
     }
 
     #[Route('/{id}/edit', name: 'app_tools_edit', methods: ['GET', 'POST'])]
@@ -62,10 +58,7 @@ class ToolsController extends AbstractController
             return $this->redirectToRoute('app_tools_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tools/edit.html.twig', [
-            'tool' => $tool,
-            'form' => $form,
-        ]);
+        return $this->renderForm('tools/edit.html.twig', compact('tool', 'form'));
     }
 
     #[Route('/{id}', name: 'app_tools_delete', methods: ['POST'])]

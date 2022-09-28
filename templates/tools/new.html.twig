@@ -3,9 +3,14 @@
 {% block title %}New Tools{% endblock %}
 
 {% block body %}
-    <h1>Create new Tools</h1>
-
+<div class="container mx-auto mt-24 px-4">
+    <div class="grid w-full justify-center">
+        <h1 class="text-2xl text-gray-800 font-bold m-4 ">
+            Créer un appareil
+        </h1>
+    </div>
+       
     {{ include('tools/_form.html.twig') }}
 
-    <a href="{{ path('app_tools_index') }}">back to list</a>
+</div>
 {% endblock %}

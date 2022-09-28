@@ -40,7 +40,6 @@ class NewContainersEditType extends AbstractType
                 'placeholder' => 'Sélectionner',
                 'choices'=> $gaz,
                 'required'=> true,
-
             ])
             ->add('initial_weight', NumberType::class, [
                 'label' => false,
