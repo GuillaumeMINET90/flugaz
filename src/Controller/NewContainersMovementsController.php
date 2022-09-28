@@ -4,14 +4,16 @@ namespace App\Controller;
 
 use App\Entity\NewContainersMovements;
 use App\Form\NewContainersMovementsType;
-use App\Repository\NewContainersMovementsRepository;
 use App\Repository\NewContainersRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\NewContainersMovementsRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/new/containers/movements')]
+#[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
 class NewContainersMovementsController extends AbstractController
 {
     #[Route('/table_{id<\d+>?1}', name: 'app_new_containers_movements_index', methods: ['GET'])]

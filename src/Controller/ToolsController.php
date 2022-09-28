@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Tools;
 use App\Form\ToolsType;
 use App\Repository\ToolsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/tools')]
+#[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
 class ToolsController extends AbstractController
 {
     #[Route('/', name: 'app_tools_index', methods: ['GET'])]

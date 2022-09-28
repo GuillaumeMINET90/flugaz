@@ -4,21 +4,34 @@ namespace App\Controller;
 
 use App\Entity\TransferContainers;
 use App\Form\TransferContainersType;
-use App\Repository\TransferContainersRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\TransferContainerUsedType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\TransferContainersRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/transfer/containers')]
+#[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
 class TransferContainersController extends AbstractController
 {
-    #[Route('/', name: 'app_transfer_containers_index', methods: ['GET'])]
-    public function index(TransferContainersRepository $transferContainersRepository): Response
+    #[Route('/_{id<\d+>?1}', name: 'app_transfer_containers_index', methods: ['GET', 'POST'])]
+    public function index(Request $request, TransferContainersRepository $transferContainersRepository): Response
     {
-        return $this->render('transfer_containers/index.html.twig', [
-            'transfer_containers' => $transferContainersRepository->findAll(),
-        ]);
+        $transferContainers = $transferContainersRepository->findAll();
+
+        $form = $this->createForm(TransferContainerUsedType::class);
+        $form->get('user')->setData($this->getUser());
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            dd($form->getViewData());
+
+
+            return $this->redirectToRoute('app_transfer_containers_index', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->renderForm('transfer_containers/index.html.twig', compact('transferContainers', 'form'));
     }
 
     #[Route('/new', name: 'app_transfer_containers_new', methods: ['GET', 'POST'])]

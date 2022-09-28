@@ -43,8 +43,14 @@
                     </div> 
                 </div>
             </div>
+        {% else %}
+            <div class="flex m-4 flex-row  justify-center ">
+                <p class="text-gray-700 p-4 border-y-4 border-gray-200 font-bold text-base mt-12 ">
+                    Aucune bouteille de fluide en stock  
+                </p>
+            </div>
         {% endfor %}
 
 
-</div>>
+</div>
 {% endblock %}
