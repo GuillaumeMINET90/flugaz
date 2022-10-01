@@ -39,20 +39,20 @@ class RecoveryContainersMovementsRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return RecoveryContainersMovements[] Returns an array of RecoveryContainersMovements objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return RecoveryContainersMovements[] 
+     */
+    public function containersVolumeRecover(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->select('(r.recovery_container) AS container , SUM(r.quantity_recovered) AS totalQ ')
+            ->leftJoin('r.recovery_container', 'c')
+            ->andWhere('c.return_date IS NULL')
+            ->groupBy('r.recovery_container')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?RecoveryContainersMovements
 //    {

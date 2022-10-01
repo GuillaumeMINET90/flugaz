@@ -10,41 +10,6 @@
                 {{ form_row(form.number)}}    
             </div>
         </div>
-
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
-                <label for="new_containers_return_date" class="form-label inline-block text-gray-600">
-                    Date de retour
-                </label>
-                {{ form_row(form.return_date)}}    
-            </div>
-        </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
-                <label for="new_containers_purchase_date" class="form-label inline-block text-gray-600">
-                    Date d'achat
-                </label>
-                {{ form_row(form.purchase_date)}}    
-            </div>
-        </div>
-        
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
-                <label for="new_containers_gaz" class="form-label inline-block text-gray-600">
-                    Type de gaz
-                </label>
-                {{ form_row(form.gaz)}}    
-            </div>
-        </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
-                <label for="new_containers_initial_weight" class="form-label inline-block text-gray-600">
-                    Poid du fluide <span class="italic">(en kg)</span> 
-                </label>
-                {{ form_row(form.initial_weight)}}   
-            </div>
-        </div>
-
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="new_containers_vendor" class="form-label inline-block text-gray-600">
@@ -54,6 +19,40 @@
             </div>
         </div>
         <div class="grid grid-cols-1 gap-6">
+            <div class="mb-3 xl:w-96">
+                <label for="new_containers_return_date" class="form-label inline-block text-gray-600">
+                    Date de retour <i class ="font-bold text-red-600">*</i>
+                </label>
+                {{ form_row(form.return_date)}}    
+            </div>
+        </div>
+        <div class="grid grid-cols-1 hidden gap-6">
+            <div class="mb-3 xl:w-96">
+                <label for="new_containers_purchase_date" class="form-label inline-block text-gray-600">
+                    Date d'achat
+                </label>
+                {{ form_row(form.purchase_date)}}    
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 hidden gap-6">
+            <div class="mb-3 xl:w-96">
+                <label for="new_containers_gaz" class="form-label inline-block text-gray-600">
+                    Type de gaz
+                </label>
+                {{ form_row(form.gaz)}}    
+            </div>
+        </div>
+        <div class="grid grid-cols-1 hidden gap-6">
+            <div class="mb-3 xl:w-96">
+                <label for="new_containers_initial_weight" class="form-label inline-block text-gray-600">
+                    Poid du fluide <span class="italic">(en kg)</span> 
+                </label>
+                {{ form_row(form.initial_weight)}}   
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 hidden gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="new_containers_bill_number" class="form-label inline-block text-gray-600">
                     N° de BL

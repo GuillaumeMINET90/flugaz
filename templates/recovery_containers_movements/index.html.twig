@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RecoveryContainersMovements index{% endblock %}
+
+{% block body %}
+    <h1>RecoveryContainersMovements index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantity_recovered</th>
+                <th>Date</th>
+                <th>Cerfa_number</th>
+                <th>Customer</th>
+                <th>Remark</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for recovery_containers_movement in recovery_containers_movements %}
+            <tr>
+                <td>{{ recovery_containers_movement.id }}</td>
+                <td>{{ recovery_containers_movement.quantityRecovered }}</td>
+                <td>{{ recovery_containers_movement.date ? recovery_containers_movement.date|date('Y-m-d') : '' }}</td>
+                <td>{{ recovery_containers_movement.cerfaNumber }}</td>
+                <td>{{ recovery_containers_movement.customer }}</td>
+                <td>{{ recovery_containers_movement.remark }}</td>
+                <td>
+                    <a href="{{ path('app_recovery_containers_movements_show', {'id': recovery_containers_movement.id}) }}">show</a>
+                    <a href="{{ path('app_recovery_containers_movements_edit', {'id': recovery_containers_movement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_recovery_containers_movements_new') }}">Create new</a>
+{% endblock %}

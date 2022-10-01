@@ -5,7 +5,7 @@
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="transfer_container_number" class="form-label inline-block text-gray-600">
-                    N° de bouteille
+                    N° de bouteille <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.number)}}    
             </div>
@@ -13,7 +13,7 @@
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="transfer_container_vendor" class="form-label inline-block text-gray-600">
-                    Fournisseur
+                    Fournisseur <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.vendor)}}    
             </div>
@@ -21,7 +21,7 @@
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="transfer_container_purchase_date" class="form-label inline-block text-gray-600">
-                    Date d'achat
+                    Date d'achat <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.purchase_date)}}    
             </div>
@@ -29,7 +29,7 @@
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="transfer_container_tare" class="form-label inline-block text-gray-600">
-                    Tare à vide
+                    Tare à vide <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.tare)}}    
             </div>
@@ -37,7 +37,7 @@
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="transfer_container_volume" class="form-label inline-block text-gray-600">
-                    Volume <span class="italic">(en Litre)</span> 
+                    Volume <span class="italic">(en Litre)</span> <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.volume)}}    
             </div>

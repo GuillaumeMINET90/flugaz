@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit RecoveryContainersMovements{% endblock %}
+
+{% block body %}
+    <h1>Edit RecoveryContainersMovements</h1>
+
+    {{ include('recovery_containers_movements/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_recovery_containers_movements_index') }}">back to list</a>
+
+    {{ include('recovery_containers_movements/_delete_form.html.twig') }}
+{% endblock %}

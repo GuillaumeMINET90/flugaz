@@ -1,10 +1,9 @@
 {{ form_start(form) }}
-
 <div class="grow-0 shrink-0 basis-auto my-4 w-full xl:w-5/12 px-3 lg:px-6 mb-12 xl:mb-0">
     <div>
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
-                <label for="new_containers_number" class="form-label inline-block text-gray-600">
+                <label for="recovery_containers_number" class="form-label inline-block text-gray-600">
                     Numéro de bouteille <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.number)}}    
@@ -12,7 +11,7 @@
         </div>
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
-                <label for="new_containers_gaz" class="form-label inline-block text-gray-600">
+                <label for="recovery_containers_gaz" class="form-label inline-block text-gray-600">
                     Type de gaz <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.gaz)}}    
@@ -20,15 +19,23 @@
         </div>
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
-                <label for="new_containers_initial_weight" class="form-label inline-block text-gray-600">
-                    Poid du fluide <span class="italic">(en kg)</span> <i class ="font-bold text-red-600">*</i>
+                <label for="recovery_containers_tare" class="form-label inline-block text-gray-600">
+                    Tare <span class="italic">(en kg)</span> <i class ="font-bold text-red-600">*</i>  
                 </label>
-                {{ form_row(form.initial_weight)}}   
+                {{ form_row(form.tare)}}   
             </div>
         </div>
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
-                <label for="new_containers_purchase_date" class="form-label inline-block text-gray-600">
+                <label for="recovery_containers_total_weight" class="form-label inline-block text-gray-600">
+                    Contenance fluide max <span class="italic">(en kg)</span> <i class ="font-bold text-red-600">*</i>
+                </label>
+                {{ form_row(form.total_weight)}}    
+            </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6">
+            <div class="mb-3 xl:w-96">
+                <label for="recovery_containers_purchase_date" class="form-label inline-block text-gray-600">
                     Date d'achat <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.purchase_date)}}    
@@ -36,27 +43,22 @@
         </div>
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
-                <label for="new_containers_purchase_vendor" class="form-label inline-block text-gray-600">
+                <label for="recovery_containers_vendor" class="form-label inline-block text-gray-600">
                     Fournisseur <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.vendor)}}    
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
-                <label for="new_containers_bill_number" class="form-label inline-block text-gray-600">
-                    N° de BL <i class ="font-bold text-red-600">*</i>
-                </label>
-                {{ form_row(form.bill_number)}}    
-            </div>
-        </div>
+
+
+
         <div class="grid hidden grid-cols-1 my-4 gap-6">
             {{ form_row(form.return_date)}}
         </div>
         {{ form_row(form._token) }}
         <div class="flex space-x-2 mt-3 justify-center">
             <div>
-                <button type="button" onclick="window.location.href = '{{ path('app_new_containers_index') }}'" class="btn-blue-return"> 
+                <button type="button" onclick="window.location.href = '{{ path('app_recovery_containers_index') }}'" class="btn-blue-return"> 
                     retour
                 </button>
 
@@ -67,5 +69,4 @@
         </div>
     </div>
 </div>
-
 {{ form_end(form) }}

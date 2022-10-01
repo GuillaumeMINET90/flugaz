@@ -40,21 +40,22 @@ class RecoveryContainersRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return ReocveryContainers[] Returns an array of ReocveryContainers objects
+//     * @return RecoveryContainers[] 
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+//     public function containersVolumeRecover(): array
+//     {
+//         return $this->createQueryBuilder('r')
+//             ->select('(c.recovery_container) AS container , SUM(r.quantity_injected) AS totalQ ')
+//             ->leftJoin('r.new_container', 'c')
+//             ->andWhere('c.return_date IS NULL')
+//             ->groupBy('r.new_container')
+//             ->getQuery()
+//             ->getResult()
+//         ;
+//     }
+   
 
-//    public function findOneBySomeField($value): ?ReocveryContainers
+//    public function findOneBySomeField($value): ?RecoveryContainers
 //    {
 //        return $this->createQueryBuilder('r')
 //            ->andWhere('r.exampleField = :val')

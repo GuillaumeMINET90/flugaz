@@ -5,7 +5,7 @@
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="container_number" class="form-label inline-block text-gray-600">
-                    N° de bouteille
+                    N° de bouteille <i class ="font-bold text-red-600">*</i>
                 </label>
                 <input type="text" class="form-the-line-medium" id="container_number" value="{{container.number}}" readonly/>
             </div>
@@ -18,18 +18,11 @@
                 {{ form_row(form.technicien)}}   
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
-                <label for="technicien_name" class="form-label inline-block text-gray-600">
-                    Techncien
-                </label>
-                <input type="text" class="form-the-line-medium" id="technicien_name" value="{{app.user.username}}" readonly/>
-            </div>
-        </div>
+
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="new_containers_movements_quantity_injected" class="form-label inline-block text-gray-600">
-                    Quantité injectée <span class="italic">(en kg)</span> 
+                    Quantité injectée <span class="italic">(en kg)</span> <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.quantity_injected)}}    
             </div>
@@ -37,7 +30,7 @@
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="new_containers_movements_date" class="form-label inline-block text-gray-600">
-                    Date d'intervention
+                    Date d'intervention <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.date)}}    
             </div>
@@ -45,7 +38,7 @@
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="new_containers_movements_cerfa_number" class="form-label inline-block text-gray-600">
-                    N° du Cerfa
+                    N° du Cerfa <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.cerfa_number)}}   
             </div>
@@ -53,7 +46,7 @@
         <div class="grid grid-cols-1 gap-6">
             <div class="mb-3 xl:w-96">
                 <label for="new_containers_movements_customer" class="form-label inline-block text-gray-600">
-                    Client
+                    Client <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.customer)}}    
             </div>

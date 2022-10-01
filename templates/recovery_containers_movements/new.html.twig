@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New RecoveryContainersMovements{% endblock %}
+
+{% block body %}
+    <h1>Create new RecoveryContainersMovements</h1>
+
+    {{ include('recovery_containers_movements/_form.html.twig') }}
+
+    <a href="{{ path('app_recovery_containers_movements_index') }}">back to list</a>
+{% endblock %}
