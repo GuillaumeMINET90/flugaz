@@ -6,38 +6,60 @@
 <div class="container mx-auto px-4">
 
     <div class="grid w-full justify-center mt-24">
-        <h1 class="text-2xl text-gray-800 font-bold uppercase m-4 ">
+        <h1 class="text-2xl text-center text-gray-800 font-bold uppercase m-4 ">
             Choisir une bouteille
         </h1>
     </div>
   
-        {% set id = 123 %}
+        {% set number = 123 %}
         {% for tc in transferContainers %}
+            {% if tc.returnDate == NULL %}
+            
+                
             <div class="flex m-4 flex-row  justify-center ">
                 <div class="flew  p-6 rounded-lg shadow-lg bg-slate-50 w-full">
                     <div class="flex flex-col space-y-2 float-left ">
                         <h5 class="text-gray-900 text-xl leading-tight font-medium mb-4 w-80">N° {{tc.number}} &emsp;&emsp; <span class="text-gray-400">{{tc.volume}} Litres</span>  </h5>
                             <p class="text-gray-700 text-base mb-4 w-80">
                                 {% if tc.usedContainer == true %}
-                                    <i> Utilisateur actuel:</i> <span class="text-gray-500">{{tc.user}}</span>
+                                    <i> Utilisateur actuel:</i> <span class="text-gray-500">{{tc.user.username}}</span> <br>
                                 {% endif %}
-                                {% set id = tc.id %}
+                                    <i> Gaz:</i> 
+                                        {% if tc.gaz is null %}
+                                          <span class="text-gray-500">Aucun </span> <br>
+                                        {% else %}
+                                          <span class="text-gray-500">{{tc.gaz}}</span> <br>
+                                        {% endif %}
+                                    
+                                    <i> Poid du fluide:</i> 
+                                        {% if tc.totalWeight is null %}
+                                          <span class="text-gray-500"> Aucun </span> <br>
+                                        {% else %}
+                                          <span class="text-gray-500">{{tc.totalWeight}} <i>kg</i> </span> <br>
+                                        {% endif %}  
+                                {% set number = tc.number %}
                             </p>
                     </div>
                     <div class="flex space-x-16 float-right">
-                  
-                        {# <button type="button" onclick="window.location.href = '{{path('app_tranfer_containers_edit', {id:nc.id})}}'" class="float-right mt-6 inline-block px-3 py-2 border-2 border-orange-600 text-orange-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
-                            <i class="bi bi-truck text-xl"></i>
-                        </button> #}
-                        <div class="">
-                            <button type="button" class="btn-fuchsia" 
-                            data-id="{{id}}" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                                <i class="text-xl bi bi-calendar2-check"></i>
-                            </button>
-                        </div>
+                            {% if tc.user == app.user or tc.user == NULL %}
+                                {% if tc.totalWeight == 0 %}
+                                    <button type="button" onclick="window.location.href = '{{path('app_transfer_containers_return', {id:tc.id})}}'" class="float-right btn-orange">
+                                        <i class="bi bi-truck text-xl"></i>
+                                    </button>
+                                {% endif %}
+                                <button type="button" onclick="window.location.href = '{{path('app_transfer_containers_use', {id:tc.id})}}'" class="float-right btn-fuchsia">
+                                    <i class="text-xl bi bi-calendar2-check"></i>
+                                </button>
+                            {% else %}
+                                <button type="button" class="btn-red-light" >
+                                    <i class="text-xl bi bi-x-lg"></i>
+                                </button>
+                            {% endif %}
                     </div> 
                 </div>
             </div>
+            {% else %}
+            {% endif %}
         {% else %}
             <div class="flex m-4 flex-row  justify-center ">
                 <p class="text-gray-700 p-4 border-y-4 border-gray-200 font-bold text-base mt-12 ">
@@ -47,54 +69,6 @@
 
         {% endfor %}
 
-
-
-
-<div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
-  <div class="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
-    <div class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-fuchsia-200 bg-clip-padding rounded-md  m-4 outline-none text-current">
-      <div class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
-        <h5 class="text-xl font-medium leading-normal text-black" id="exampleModalScrollableLabel">
-          Réserver une bouteille
-        </h5>
-        <button type="button"
-          class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-          data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-black relative p-4">
-        <p class="mb-4">This is a vertically centered modal. Id {{id}}</p>
-        {{ form_start(form) }}
-        <div class="hidden">
-            {{ form_row(form.user) }}
-            {{ form_row(form.used_container) }}
-        </div>
-      <div class="form-check">
-      <input class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" 
-        type="checkbox" name="transfer_container_used[used_container]" value="" id="transfer_container_used_used_container">
-        <label class="form-check-label inline-block text-gray-800" for="transfer_container_used_used_container">
-          Réserver la bouteille
-        </label>
-      </div>  
-
-      </div>
-      <div
-        class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
-        {# <button type="button"
-          class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-          data-bs-dismiss="modal">
-          Close
-        </button> #}
-        <button type="submit"
-          class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out">
-          Sauvegarder
-        </button>
-        {{ form_end(form) }}
-      </div>
-    </div>
-  </div>
 </div>
-
-
-
 
 {% endblock %}

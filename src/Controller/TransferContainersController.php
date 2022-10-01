@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\TransferContainers;
+use App\Repository\UserRepository;
 use App\Form\TransferContainersType;
 use App\Form\TransferContainerUsedType;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\TransferContainersReturnType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,22 +20,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
 class TransferContainersController extends AbstractController
 {
-    #[Route('/_{id<\d+>?1}', name: 'app_transfer_containers_index', methods: ['GET', 'POST'])]
+    #[Route('/', name: 'app_transfer_containers_index', methods: ['GET', 'POST'])]
     public function index(Request $request, TransferContainersRepository $transferContainersRepository): Response
     {
         $transferContainers = $transferContainersRepository->findAll();
 
-        $form = $this->createForm(TransferContainerUsedType::class);
-        $form->get('user')->setData($this->getUser());
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-            dd($form->getViewData());
-
-
-            return $this->redirectToRoute('app_transfer_containers_index', [], Response::HTTP_SEE_OTHER);
-        }
-        return $this->renderForm('transfer_containers/index.html.twig', compact('transferContainers', 'form'));
+        return $this->renderForm('transfer_containers/index.html.twig', compact('transferContainers'));
     }
 
     #[Route('/new', name: 'app_transfer_containers_new', methods: ['GET', 'POST'])]
@@ -53,18 +47,12 @@ class TransferContainersController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_transfer_containers_show', methods: ['GET'])]
-    public function show(TransferContainers $transferContainer): Response
-    {
-        return $this->render('transfer_containers/show.html.twig', [
-            'transfer_container' => $transferContainer,
-        ]);
-    }
 
-    #[Route('/{id}/edit', name: 'app_transfer_containers_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, TransferContainers $transferContainer, TransferContainersRepository $transferContainersRepository): Response
+    #[Route('/{id}/return_transfer_container', name: 'app_transfer_containers_return', methods: ['GET', 'POST'])]
+    public function edit($id, Request $request, TransferContainers $transferContainer, TransferContainersRepository $transferContainersRepository): Response
     {
-        $form = $this->createForm(TransferContainersType::class, $transferContainer);
+        $container = $transferContainersRepository->find($id)->getNumber();
+        $form = $this->createForm(TransferContainersReturnType::class, $transferContainer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -73,10 +61,42 @@ class TransferContainersController extends AbstractController
             return $this->redirectToRoute('app_transfer_containers_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('transfer_containers/edit.html.twig', [
-            'transfer_container' => $transferContainer,
-            'form' => $form,
-        ]);
+        return $this->renderForm('transfer_containers/edit.html.twig', compact('transferContainer', 'form', 'container'));
+    }
+    #[Route('/{id}/use_container', name: 'app_transfer_containers_use', methods: ['GET', 'POST'])]
+    public function use($id, Request $request, TransferContainersRepository $transferContainersRepository, EntityManagerInterface $em): Response
+    {
+        $transferContainer = $transferContainersRepository->find($id);
+
+        $form = $this->createForm(TransferContainerUsedType::class, $transferContainer);
+        $form->get('user')->setData($this->getUser());
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if (intval($form->get('used_container')->getViewData('used_container')) === 1) {
+
+                $transferContainer->setUsedContainer(true);
+                $transferContainer->setUser($this->getUser());
+                $transferContainer->setGaz($form->get('gaz')->getViewData('gaz'));
+                $transferContainer->setTotalWeight(floatval($form->get('total_weight')->getViewData('total_weight')));
+                // dd($transferContainer);
+                $em->flush($transferContainer);
+
+            } else {
+
+                $transferContainer->setUsedContainer(false);
+                $transferContainer->setUser(NULL);
+                $transferContainer->setGaz($form->get('gaz')->getViewData('gaz'));
+                $transferContainer->setTotalWeight(floatval($form->get('total_weight')->getViewData('total_weight')));
+
+                $em->flush($transferContainer);
+            }
+
+            return $this->redirectToRoute('app_transfer_containers_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('transfer_containers/use.html.twig', compact('form', 'transferContainer'));
     }
 
     #[Route('/{id}', name: 'app_transfer_containers_delete', methods: ['POST'])]

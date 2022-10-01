@@ -10,37 +10,17 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
-class TransferContainersType extends AbstractType
+
+class TransferContainersReturnType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('number', IntegerType::class, [
-                'label' => false,
-                'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> true,
-            ])
-            ->add('tare', NumberType::class, [
-                'label' => false,
-                'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> true,
-            ])
-            ->add('purchase_date', DateType::class, [
-                'label' => false,
-                'widget' => 'single_text',
-                'attr' => ['class' => 'form-datepicker-wiwi'],
-                'required'=> true,
-            ])
-            ->add('volume', IntegerType::class, [
-                'label' => false,
-                'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> true,
-            ])
+           
             ->add('vendor', EntityType::class, [
                 'label' => false,
+                'disabled' => true,
                 'placeholder' => 'Sélectionner',
                 'attr' => ['class' => 'form-select-medium'],
                 'class' => Vendors::class,
@@ -49,6 +29,12 @@ class TransferContainersType extends AbstractType
                                     ->orderBy('v.name', 'ASC');},
                 'choice_label' => 'name',
                 'required' => true,
+            ])
+            ->add('return_date', DateType::class, [
+                'label' => false,
+                'widget' => 'single_text',
+                'attr' => ['class' => 'form-datepicker-wiwi'],
+                'required'=> true,
             ])
         ;
     }
