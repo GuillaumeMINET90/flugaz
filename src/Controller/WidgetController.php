@@ -13,7 +13,8 @@ class WidgetController extends AbstractController
     #[Route('/main_menu', name: 'app_menu')]
     public function menuPrincipal(): Response
     {
-        return $this->render('widget/menu.html.twig');
+        $param = true;
+        return $this->render('widget/menu.html.twig', compact('param'));
     }
     #[Route('/conteneurs', name: 'app_container')]
     public function container(): Response

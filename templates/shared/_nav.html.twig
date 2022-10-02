@@ -42,6 +42,12 @@
                         {% endif %}
                        
                     {% endif %} 
+                    {% if param is defined  %}
+                        <button type="button" onclick="window.location.href = '{{ path('app_user_param') }}'" class="inline-block px-3 py-2 border-2 border-slate-50 text-slate-50 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                            <i class="text-white bi bi-gear text-lg"></i>
+                        </button>
+                    {% endif %}
+                    
                     <button type="button" onclick="history.back()" class=" px-3 py-2 border-2 border-slate-50 text-slate-50 font-medium text-xs leading-tight rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
                         <i class="text-white bi bi-arrow-return-left text-xl"></i>
                     </button>

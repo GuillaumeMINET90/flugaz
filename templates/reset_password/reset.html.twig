@@ -1,0 +1,32 @@
+{% extends 'baseLogin.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+<div class="container mx-auto mt-24 px-4">
+    <div class="grid w-full justify-center">
+    <div>
+        <img class="mx-auto h-16 w-auto" src="{{ asset('images/icon_fg.png')}}" alt="Application FLUGAZ">
+    </div>
+        <h1 class="text-2xl text-center text-gray-800 font-bold m-4 ">
+            Changer votre mot de passe
+        </h1>
+    </div>
+
+    {{ form_start(resetForm) }}
+     <div class="grid grid-cols-1 gap-6">
+            <div class="mb-3 xl:w-96">
+                <label for="new_containers_gaz" class="form-label inline-block text-gray-600">
+                    Nouveau mot de passe <i class ="font-bold text-red-600">*</i>
+                </label>
+                {{ form_row(resetForm.plainPassword) }}   
+            </div>
+        </div>
+        
+        <button class="btn btn-primary">Reset password</button>
+    {{ form_end(resetForm) }}
+
+
+</div>
+
+{% endblock %}

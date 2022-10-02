@@ -51,6 +51,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: TransferContainers::class)]
     private Collection $transferContainers;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
     public function __construct()
     {
         $this->newContainersMovements = new ArrayCollection();
@@ -282,6 +285,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $transferContainer->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

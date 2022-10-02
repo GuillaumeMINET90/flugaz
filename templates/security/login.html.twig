@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseLogin.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
 
@@ -34,6 +34,9 @@
       
 
     </div>
+    <p class="hover:text-blue-600">
+        <a href="{{path('app_forgot_password_request')}}" > Mot de passe oublié ?</a>
+    </p>
     <form class="mt-8 space-y-6" action="#" method="POST">
 
 
