@@ -58,7 +58,6 @@ class RecoveryContainersType extends AbstractType
                 ])
             ->add('vendor', EntityType::class, [
                 'label' => false,
-                'disabled' => true,
                 'placeholder' => 'Sélectionner',
                 'attr' => ['class' => 'form-select-medium'],
                 'class' => Vendors::class,
