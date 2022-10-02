@@ -20,7 +20,8 @@ class RecoveryContainersController extends AbstractController
     {
         $recoveryContainers = $recoveryContainersRepository->findBy(['return_date' => Null], ['gaz' => 'ASC']);
         $volumeRecovered = $recoveryContainersMovementsRepository->containersVolumeRecover();
-        return $this->render('recovery_containers/index.html.twig', compact('recoveryContainers','volumeRecovered'));
+        $new = 'recoveryContainer';
+        return $this->render('recovery_containers/index.html.twig', compact('recoveryContainers','volumeRecovered','new'));
     }
 
     #[Route('/new', name: 'app_recovery_containers_new', methods: ['GET', 'POST'])]

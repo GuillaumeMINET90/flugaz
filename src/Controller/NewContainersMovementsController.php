@@ -21,8 +21,8 @@ class NewContainersMovementsController extends AbstractController
     {
         $container = $newContainersRepository->find($id);
         $new_containers_movements = $newContainersMovementsRepository->findBy(['new_container' => $container]);
-        
-        return $this->render('new_containers_movements/index.html.twig', compact('container','new_containers_movements'));
+        $cont = 'newCont';
+        return $this->render('new_containers_movements/index.html.twig', compact('container','new_containers_movements', 'cont'));
     }
 
     #[Route('/new_{id<\d+>?1}', name: 'app_new_containers_movements_new', methods: ['GET', 'POST'])]
@@ -67,7 +67,7 @@ class NewContainersMovementsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $newContainersMovementsRepository->save($newContainersMovement, true);
 
-            return $this->redirectToRoute('app_new_containers_movements_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_new_containers_movements_index', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('new_containers_movements/edit.html.twig', compact('container', 'newContainersMovement','form'));

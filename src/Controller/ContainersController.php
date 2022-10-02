@@ -14,21 +14,22 @@ class ContainersController extends AbstractController
     public function new(): Response
     {
         $containerType = 'neuves';
+        $new = 'newContainer';
   
-        return $this->render('containers_selection/new_container.html.twig', compact('containerType'));
+        return $this->render('containers_selection/new_container.html.twig', compact('containerType','new'));
     }
     #[Route('/transfer_containers', name: 'app_transfer_containers')]
     public function transfer(): Response
     {
         $containerType = 'de transfert';
-        $path = '';
-        return $this->render('containers_selection/transfer_container.html.twig', compact('containerType', 'path'));
+        $new = 'tansferContainer';
+        return $this->render('containers_selection/transfer_container.html.twig', compact('containerType', 'new'));
     }
     #[Route('/recovery_containers', name: 'app_recovery_containers')]
     public function recovery(): Response
     {
         $containerType = 'de récup';
-        $path = '';
-        return $this->render('containers_selection/recovery_container.html.twig', compact('containerType', 'path'));
+        $new = 'recoveryContainer';
+        return $this->render('containers_selection/recovery_container.html.twig', compact('containerType', 'new'));
     }
 }

@@ -24,8 +24,9 @@ class TransferContainersController extends AbstractController
     public function index(Request $request, TransferContainersRepository $transferContainersRepository): Response
     {
         $transferContainers = $transferContainersRepository->findAll();
+        $new = 'transferContainer';
 
-        return $this->renderForm('transfer_containers/index.html.twig', compact('transferContainers'));
+        return $this->renderForm('transfer_containers/index.html.twig', compact('transferContainers','new'));
     }
 
     #[Route('/new', name: 'app_transfer_containers_new', methods: ['GET', 'POST'])]

@@ -22,8 +22,8 @@ class NewContainersController extends AbstractController
     {
         $newContainers = $newContainersRepository->findBy(['return_date' => Null], ['gaz' => 'ASC']);
         $volumeRest = $newContainersMovementsRepository->containersVolumeRest();
-        //dd($volumeRest);
-        return $this->render('new_containers/index.html.twig', compact('newContainers', 'volumeRest'));
+        $new = 'newContainer';
+        return $this->render('new_containers/index.html.twig', compact('newContainers', 'volumeRest','new'));
     }
 
     #[Route('/new', name: 'app_new_containers_new', methods: ['GET', 'POST'])]

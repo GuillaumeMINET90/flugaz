@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\RecoveryContainersMovements;
 use App\Form\RecoveryContainersMovementsType;
 use App\Repository\RecoveryContainersMovementsRepository;
+use App\Repository\RecoveryContainersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,19 +14,25 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/recovery/containers/movements')]
 class RecoveryContainersMovementsController extends AbstractController
 {
-    #[Route('/', name: 'app_recovery_containers_movements_index', methods: ['GET'])]
-    public function index(RecoveryContainersMovementsRepository $recoveryContainersMovementsRepository): Response
+    #[Route('/table_{id<\d+>?1}', name: 'app_recovery_containers_movements_index', methods: ['GET'])]
+    public function index($id, RecoveryContainersRepository $recoveryContainersRepository, RecoveryContainersMovementsRepository $recoveryContainersMovementsRepository): Response
     {
-        return $this->render('recovery_containers_movements/index.html.twig', [
-            'recovery_containers_movements' => $recoveryContainersMovementsRepository->findAll(),
-        ]);
+        $container = $recoveryContainersRepository->find($id);
+        $recovery_containers_movements = $recoveryContainersMovementsRepository->findBy(['recovery_container' => $container]);
+        $cont = 'recoveryCont';
+        return $this->render('recovery_containers_movements/index.html.twig', compact('container', 'recovery_containers_movements','cont'));
     }
 
-    #[Route('/new', name: 'app_recovery_containers_movements_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RecoveryContainersMovementsRepository $recoveryContainersMovementsRepository): Response
+    #[Route('/new_{id<\d+>?1}', name: 'app_recovery_containers_movements_new', methods: ['GET', 'POST'])]
+    public function new($id, Request $request, RecoveryContainersRepository $recoveryContainersRepository, RecoveryContainersMovementsRepository $recoveryContainersMovementsRepository): Response
     {
+        $container = $recoveryContainersRepository->find($id);
+        $user = $this->getUser();
+
         $recoveryContainersMovement = new RecoveryContainersMovements();
         $form = $this->createForm(RecoveryContainersMovementsType::class, $recoveryContainersMovement);
+        $form->get('recovery_container')->setData($container);
+        $form->get('technicien')->setData($user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -34,10 +41,7 @@ class RecoveryContainersMovementsController extends AbstractController
             return $this->redirectToRoute('app_recovery_containers_movements_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('recovery_containers_movements/new.html.twig', [
-            'recovery_containers_movement' => $recoveryContainersMovement,
-            'form' => $form,
-        ]);
+        return $this->renderForm('recovery_containers_movements/new.html.twig', compact('container', 'recoveryContainersMovement', 'form'));
     }
 
     #[Route('/{id}', name: 'app_recovery_containers_movements_show', methods: ['GET'])]
@@ -49,21 +53,22 @@ class RecoveryContainersMovementsController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_recovery_containers_movements_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, RecoveryContainersMovements $recoveryContainersMovement, RecoveryContainersMovementsRepository $recoveryContainersMovementsRepository): Response
-    {
+    public function edit($id, Request $request, RecoveryContainersRepository $recoveryContainersRepository, RecoveryContainersMovements $recoveryContainersMovement, RecoveryContainersMovementsRepository $recoveryContainersMovementsRepository): Response
+    {   
+        $containerId = intval($recoveryContainersMovementsRepository->find($id)->getRecoveryContainer()->getId());
+        $container = $recoveryContainersRepository->find($containerId);
+        //dd($container);
+        $user = $this->getUser();
         $form = $this->createForm(RecoveryContainersMovementsType::class, $recoveryContainersMovement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recoveryContainersMovementsRepository->save($recoveryContainersMovement, true);
 
-            return $this->redirectToRoute('app_recovery_containers_movements_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_recovery_containers_movements_index', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('recovery_containers_movements/edit.html.twig', [
-            'recovery_containers_movement' => $recoveryContainersMovement,
-            'form' => $form,
-        ]);
+        return $this->renderForm('recovery_containers_movements/edit.html.twig', compact('recoveryContainersMovement', 'form', 'container'));
     }
 
     #[Route('/{id}', name: 'app_recovery_containers_movements_delete', methods: ['POST'])]
