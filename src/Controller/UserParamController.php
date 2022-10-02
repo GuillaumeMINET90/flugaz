@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,8 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserParamController extends AbstractController
 {
     #[Route('/user/param', name: 'app_user_param')]
-    public function index(): Response
+    public function index(UserRepository $userRepository): Response
     {
-        return $this->render('user_param/index.html.twig');
+        $user = $userRepository->find($this->getUser());
+        
+        return $this->render('user_param/index.html.twig', compact('user'));
     }
 }
