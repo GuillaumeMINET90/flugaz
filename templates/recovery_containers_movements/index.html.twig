@@ -23,16 +23,13 @@
                         <thead class="border-b bg-white">
                             <tr>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
-                                  Id
+                                  Client
                                 </th>
-                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="hiddenxs text-sm font-bold text-gray-900 px-6 py-2">
                                   Charge
                                 </th>
-                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="hiddenxs text-sm font-bold text-gray-900 px-6 py-2">
                                   Date
-                                </th>
-                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
-                                  Client
                                 </th>
                                 <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
                                   Modifier
@@ -42,17 +39,14 @@
                         <tbody>
                         {% for rcm in recovery_containers_movements %}
                             <tr class="bg-white border-b">
-                                <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {{ rcm.id }}
-                                </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                                  {{ rcm.quantityRecovered }} <span class="text-gray-400"> kg</span> 
-                                </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
-                                  {{ rcm.date ? rcm.date|date('Y-m-d') : '' }}
-                                </td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                                   {{ rcm.customer }}
+                                </td>
+                                <td class="hiddenxs text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                  {{ rcm.quantityRecovered }} <span class="text-gray-400"> kg</span> 
+                                </td>
+                                <td class="hiddenxs text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                  {{ rcm.date ? rcm.date|date('Y-m-d') : '' }}
                                 </td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                                 {% if app.user.username == rcm.technicien.username %}
