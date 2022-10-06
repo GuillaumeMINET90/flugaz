@@ -14,7 +14,8 @@ class WidgetController extends AbstractController
     public function menuPrincipal(): Response
     {
         $param = true;
-        return $this->render('widget/menu.html.twig', compact('param'));
+        $returnIcon = true; 
+        return $this->render('widget/menu.html.twig', compact('param','returnIcon'));
     }
     #[Route('/conteneurs', name: 'app_container')]
     public function container(): Response
