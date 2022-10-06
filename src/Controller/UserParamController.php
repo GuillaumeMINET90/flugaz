@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+#[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
 class UserParamController extends AbstractController
 {
     #[Route('/user/param', name: 'app_user_param')]

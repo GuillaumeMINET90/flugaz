@@ -10,9 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\RecoveryContainersRepository;
 use App\Repository\RecoveryContainersMovementsRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/recovery/containers')]
+#[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
 class RecoveryContainersController extends AbstractController
 {
     #[Route('/', name: 'app_recovery_containers_index', methods: ['GET'])]

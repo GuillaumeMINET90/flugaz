@@ -4,14 +4,16 @@ namespace App\Controller;
 
 use App\Entity\RecoveryContainersMovements;
 use App\Form\RecoveryContainersMovementsType;
-use App\Repository\RecoveryContainersMovementsRepository;
-use App\Repository\RecoveryContainersRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\RecoveryContainersRepository;
+use App\Repository\RecoveryContainersMovementsRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/recovery/containers/movements')]
+#[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
 class RecoveryContainersMovementsController extends AbstractController
 {
     #[Route('/table_{id<\d+>?1}', name: 'app_recovery_containers_movements_index', methods: ['GET'])]
