@@ -34,6 +34,7 @@ class ToolsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $toolsRepository->save($tool, true);
 
             return $this->redirectToRoute('app_tools_index', [], Response::HTTP_SEE_OTHER);
