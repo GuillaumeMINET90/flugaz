@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Tools;
 use App\Form\ToolsType;
 use App\Repository\ToolsRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -43,14 +44,8 @@ class ToolsController extends AbstractController
         return $this->renderForm('tools/new.html.twig', compact('tool', 'form'));
     }
 
-    #[Route('/{id}', name: 'app_tools_show', methods: ['GET'])]
-    public function show(Tools $tool): Response
-    {
-        return $this->render('tools/show.html.twig', compact('tool'));
-    }
-
     #[Route('/{id}/edit', name: 'app_tools_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Tools $tool, ToolsRepository $toolsRepository): Response
+    public function edit($id, Request $request, Tools $tool, ToolsRepository $toolsRepository): Response
     {
         $form = $this->createForm(ToolsType::class, $tool);
         $form->handleRequest($request);
@@ -61,15 +56,16 @@ class ToolsController extends AbstractController
             return $this->redirectToRoute('app_tools_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('tools/edit.html.twig', compact('tool', 'form'));
+        return $this->renderForm('tools/edit.html.twig', compact('tool', 'form', 'id'));
     }
 
-    #[Route('/{id}', name: 'app_tools_delete', methods: ['POST'])]
-    public function delete(Request $request, Tools $tool, ToolsRepository $toolsRepository): Response
+    #[Route('/delete_tool_{id}', name: 'app_tools_delete', methods: ['GET', 'POST'])]
+    public function delete($id, EntityManagerInterface $em, ToolsRepository $toolsRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$tool->getId(), $request->request->get('_token'))) {
-            $toolsRepository->remove($tool, true);
-        }
+        $tool = $toolsRepository->find($id);
+        $em->remove($tool);
+        $em->flush();
+
 
         return $this->redirectToRoute('app_tools_index', [], Response::HTTP_SEE_OTHER);
     }
