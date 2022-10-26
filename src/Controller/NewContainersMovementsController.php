@@ -13,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/new/containers/movements')]
-#[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
+#[IsGranted('ROLE_USER')]
 class NewContainersMovementsController extends AbstractController
 {
     #[Route('/table_{id<\d+>?1}', name: 'app_new_containers_movements_index', methods: ['GET'])]

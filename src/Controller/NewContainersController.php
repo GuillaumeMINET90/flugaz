@@ -14,7 +14,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/new_containers_stocked')]
-#[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
+#[IsGranted('ROLE_USER')]
 class NewContainersController extends AbstractController
 {
     #[Route('/', name: 'app_new_containers_index', methods: ['GET'])]

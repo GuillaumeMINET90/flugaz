@@ -17,7 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/transfer/containers')]
-#[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
+#[IsGranted('ROLE_USER')]
 class TransferContainersController extends AbstractController
 {
     #[Route('/', name: 'app_transfer_containers_index', methods: ['GET', 'POST'])]

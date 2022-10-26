@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[IsGranted('ROLE_USER', statusCode: 403, message:('Accès non autorisé.'))]
+#[IsGranted('ROLE_USER')]
 class ContainersController extends AbstractController
 {
     #[Route('/new_containers', name: 'app_new_containers')]
