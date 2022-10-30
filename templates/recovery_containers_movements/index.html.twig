@@ -50,9 +50,13 @@
                                 </td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
                                 {% if app.user.username == rcm.technicien.username %}
-                                <button type="button" onclick="window.location.href = '{{ path('app_recovery_containers_movements_edit', {'id': rcm.id}) }}'" class="inline-block px-2 py-1 border-2 border-orange-600 text-orange-700 font-medium leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
-                                    <i class="bi bi-arrow-repeat text-lg"></i>
-                                </button>
+                                    <button type="button" onclick="window.location.href = '{{ path('app_recovery_containers_movements_edit', {'id': rcm.id}) }}'" class="inline-block px-2 py-1 border-2 border-orange-600 text-orange-700 font-medium leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
+                                        <i class="bi bi-arrow-repeat text-lg"></i>
+                                    </button>
+                                {% else %}
+                                    <i class="inline-block px-2 py-1 border-2 border-red-600 text-red-700 font-medium leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
+                                        <i class="bi bi-person-x-fill text-lg"></i>
+                                    </i>
                                 {% endif %}
                                 </td>
                             </tr class="bg-white border-b">

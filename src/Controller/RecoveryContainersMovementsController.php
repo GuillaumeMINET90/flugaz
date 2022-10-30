@@ -59,7 +59,6 @@ class RecoveryContainersMovementsController extends AbstractController
     {   
         $containerId = intval($recoveryContainersMovementsRepository->find($id)->getRecoveryContainer()->getId());
         $container = $recoveryContainersRepository->find($containerId);
-        //dd($container);
         $user = $this->getUser();
         $form = $this->createForm(RecoveryContainersMovementsType::class, $recoveryContainersMovement);
         $form->handleRequest($request);

@@ -19,10 +19,11 @@ class ToolsController extends AbstractController
     #[Route('/', name: 'app_tools_index', methods: ['GET'])]
     public function index(ToolsRepository $toolsRepository): Response
     {
-            $user = $this->getUser();
-            $today = date('d-m-Y');
-            $allTools = $toolsRepository->findAll();
-            $tools = $toolsRepository->findBy(['technicien' => $user]);
+        $user = $this->getUser();
+        $today = date('d-m-Y');
+        $allTools = $toolsRepository->findAll();
+        $tools = $toolsRepository->findBy(['technicien' => $user]);
+        
         return $this->render('tools/index.html.twig', compact('tools', 'today'));
     }
 

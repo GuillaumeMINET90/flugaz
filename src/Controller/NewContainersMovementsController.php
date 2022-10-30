@@ -17,16 +17,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class NewContainersMovementsController extends AbstractController
 {
     #[Route('/table_{id<\d+>?1}', name: 'app_new_containers_movements_index', methods: ['GET'])]
-    public function index($id, NewContainersRepository $newContainersRepository, NewContainersMovementsRepository $newContainersMovementsRepository): Response
+    public function index(
+        $id, 
+        NewContainersRepository $newContainersRepository, 
+        NewContainersMovementsRepository $newContainersMovementsRepository
+        ): Response
     {
         $container = $newContainersRepository->find($id);
         $new_containers_movements = $newContainersMovementsRepository->findBy(['new_container' => $container]);
         $cont = 'newCont';
-        return $this->render('new_containers_movements/index.html.twig', compact('container','new_containers_movements', 'cont'));
+        return $this->render('new_containers_movements/index.html.twig', compact('container', 'new_containers_movements', 'cont'));
     }
 
     #[Route('/new_{id<\d+>?1}', name: 'app_new_containers_movements_new', methods: ['GET', 'POST'])]
-    public function new($id, Request $request, NewContainersRepository $newContainersRepository, NewContainersMovementsRepository $newContainersMovementsRepository): Response
+    public function new(
+        $id, 
+        Request $request, 
+        NewContainersRepository $newContainersRepository, 
+        NewContainersMovementsRepository $newContainersMovementsRepository
+        ): Response
     {
         $container = $newContainersRepository->find($id);
         $user = $this->getUser();
@@ -43,23 +52,22 @@ class NewContainersMovementsController extends AbstractController
             return $this->redirectToRoute('app_new_containers_movements_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('new_containers_movements/new.html.twig', compact('container', 'newContainersMovement','form'));
-    }
-
-    #[Route('/{id}', name: 'app_new_containers_movements_show', methods: ['GET'])]
-    public function show(NewContainersMovements $newContainersMovement): Response
-    {
-        return $this->render('new_containers_movements/show.html.twig', [
-            'new_containers_movement' => $newContainersMovement,
-        ]);
+        return $this->renderForm('new_containers_movements/new.html.twig', compact('container', 'newContainersMovement', 'form'));
     }
 
     #[Route('/{id}/edit', name: 'app_new_containers_movements_edit', methods: ['GET', 'POST'])]
-    public function edit($id, Request $request,NewContainersRepository $newContainersRepository, NewContainersMovements $newContainersMovement, NewContainersMovementsRepository $newContainersMovementsRepository): Response
+    public function edit(
+        $id,
+        Request $request,
+        NewContainersRepository $newContainersRepository,
+        NewContainersMovements $newContainersMovement,
+        NewContainersMovementsRepository $newContainersMovementsRepository
+        ): Response 
+    
     {
         $containerId = intval($newContainersMovementsRepository->find($id)->getNewContainer()->getId());
         $container = $newContainersRepository->find($containerId);
-        //dd($container);
+
         $user = $this->getUser();
         $form = $this->createForm(NewContainersMovementsType::class, $newContainersMovement);
         $form->handleRequest($request);
@@ -70,16 +78,6 @@ class NewContainersMovementsController extends AbstractController
             return $this->redirectToRoute('app_new_containers_movements_index', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('new_containers_movements/edit.html.twig', compact('container', 'newContainersMovement','form'));
-    }
-
-    #[Route('/{id}', name: 'app_new_containers_movements_delete', methods: ['POST'])]
-    public function delete(Request $request, NewContainersMovements $newContainersMovement, NewContainersMovementsRepository $newContainersMovementsRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$newContainersMovement->getId(), $request->request->get('_token'))) {
-            $newContainersMovementsRepository->remove($newContainersMovement, true);
-        }
-
-        return $this->redirectToRoute('app_new_containers_movements_index', [], Response::HTTP_SEE_OTHER);
+        return $this->renderForm('new_containers_movements/edit.html.twig', compact('container', 'newContainersMovement', 'form'));
     }
 }

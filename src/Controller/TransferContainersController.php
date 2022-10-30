@@ -81,7 +81,7 @@ class TransferContainersController extends AbstractController
                 $transferContainer->setUser($this->getUser());
                 $transferContainer->setGaz($form->get('gaz')->getViewData('gaz'));
                 $transferContainer->setTotalWeight(floatval($form->get('total_weight')->getViewData('total_weight')));
-                // dd($transferContainer);
+
                 $em->flush($transferContainer);
 
             } else {

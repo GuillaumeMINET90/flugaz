@@ -13,7 +13,6 @@ class WidgetController extends AbstractController
     #[Route('/main_menu', name: 'app_menu')]
     public function menuPrincipal(): Response
     {
-        //dd($_COOKIE);
         $param = true;
         $returnIcon = true; 
         return $this->render('widget/menu.html.twig', compact('param','returnIcon'));
