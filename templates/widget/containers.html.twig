@@ -4,38 +4,38 @@
 
 {% block body %}
 
-<section class="container mx-auto px-4 flex-column justify-center p-10">
+<section class="card-menu-container">
 
-    <div class="grid w-full justify-center mt-12">
-        <h1 class="text-2xl  text-gray-800 font-bold uppercase m-4 ">
-            Sélectionner 
+    <div class="card-menu-container-title">
+        <h1 >
+            Sélectionner un item
         </h1>
     </div>
 
     {# New container #}
     <div class="flex flex-col sm:flex-row justify-center">
-        <div class="flex m-5 justify-center">
+        <div class="card-bte">
             <a href="{{ path('app_new_containers_index')}}">
-                <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-gray-100 shadow-lg">
-                    <img class="flex-1 w-full h-50 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ asset('images/nc.png')}}" alt="" />
+                <div class="div-card-img ">
+                    <img class="img-card-bte" src="{{ asset('images/nc.png')}}" alt="" />
                 </div>
             </a>
         </div>
 
         {# transfer container #}
-        <div class="flex m-5 justify-center">
+        <div class="card-bte">
             <a href="{{ path('app_transfer_containers_index')}}">
-                <div class="flex flex-row  rounded-lg  bg-gray-100 shadow-lg">
-                    <img class="flex-1 w-full h-50 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ asset('images/tc.png')}}" alt="" />
+                <div class="div-card-img">
+                    <img class="img-card-bte" src="{{ asset('images/tc.png')}}" alt="" />
                 </div>
             </a>
         </div>
 
         {# recovery container #}
-        <div class="flex m-5 justify-center">
+        <div class="card-bte">
             <a href="{{ path('app_recovery_containers_index')}}">
-                <div class="flex flex-col md:flex-row md:max-w-xl rounded-lg  bg-gray-100 shadow-lg">
-                    <img class="flex-1 w-full h-50 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ asset('images/rc.png')}}" alt="" />
+                <div class="div-card-img">
+                    <img class="img-card-bte" src="{{ asset('images/rc.png')}}" alt="" />
                 </div>
             </a>
         </div>

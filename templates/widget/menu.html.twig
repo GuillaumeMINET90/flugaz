@@ -4,28 +4,35 @@
 
 {% block body %}
 
-<section class="flex-column justify-center p-10">
+<section class="card-menu-container">
 
-    {# container #}
-    <div class="flex m-auto justify-center mt-20">
-        <a  href="{{ path('app_container')}}">
-            <div class="flex w-50 h-50 flex-row rounded-lg  bg-gray-100 shadow-lg">
-                <h5 class="text-gray-900 sm:text-2xl font-bold justify-center">Bouteilles</h5>
-                <img class="object-cover mx-auto h-auto w-60 object-cover rounded-t-lg" src="{{ asset('images/nc.png')}}" alt="" />
-            </div>
-        </a>
+    <div class="card-menu-container-title">
+        <h1>
+            Sélectionner un item
+        </h1>
     </div>
-
-    {# Tools #}
-
-        <div class="flex w-full mt-12 m-auto justify-center">
-            <a href="{{ path('app_tools_index')}}" class="w-full flex ">      
-                <div class="flex w-full flex-col justify-center rounded-lg bg-gray-100 shadow-lg">
-                    <h5 class="text-gray-900 font-bold">Outillage</h5>
-                    <img class=" object-fill mx-auto h-60 w-60 rounded-t-lg " src="{{ asset('images/tools.png')}}" alt="" />
+    <div class="flex flex-col sm:flex-row justify-center">
+    {# container #}
+        <div class="card-menu">
+            <a  href="{{ path('app_container')}}">
+                <div class="flex flex-col justify-center">
+                    <h5 class="title-card-menu">Bouteilles</h5>
+                    <img class="img_card-menu" src="{{ asset('images/menuBte.png')}}" alt="" />
                 </div>
             </a>
         </div>
+
+    {# Tools #}
+
+        <div class="card-menu">
+            <a href="{{ path('app_tools_index')}}" >      
+                <div class="flex flex-col justify-center">
+                    <h5 class="title-card-menu">Outillage</h5>
+                    <img class=" img_card-menu " src="{{ asset('images/tools.png')}}" alt="" />
+                </div>
+            </a>
+        </div>
+    </div>
 
 
 

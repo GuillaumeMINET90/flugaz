@@ -6,8 +6,8 @@
 
 <div class="container mx-auto px-4">
 
-    <div class="grid w-full justify-center mt-24">
-        <h1 class="text-2xl text-gray-800 font-bold uppercase m-4 ">
+    <div class="card-menu-bottle-title">
+        <h1 >
             Choisir une bouteille
         </h1>
     </div>
@@ -30,14 +30,14 @@
                     </div>
                     <div class="flex space-x-16 float-right">
                     {% if val < 2 %}
-                        <button type="button" onclick="window.location.href = '{{path('app_new_containers_edit', {id:nc.id})}}'" class="float-right mt-6 inline-block px-3 py-2 border-2 border-orange-600 text-orange-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
+                        <button type="button" onclick="window.location.href = '{{path('app_new_containers_edit', {id:nc.id})}}'" class="return-button">
                             <i class="bi bi-truck text-xl"></i>
                         </button>
                     {% endif %}
-                        <button type="button" onclick="window.location.href = '{{path('app_new_containers_movements_index', {id:nc.id})}}'" class="float-right mt-6 inline-block px-3 py-2 border-2 border-gray-900 text-slate-900 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
+                        <button type="button" onclick="window.location.href = '{{path('app_new_containers_movements_index', {id:nc.id})}}'" class="array-button">
                             <i class="bi bi-table text-xl"></i>
                         </button>
-                        <button type="button" onclick="window.location.href = '{{path('app_new_containers_movements_new', {id:nc.id})}}'" class="float-right mt-6 inline-block px-3 py-2 border-2 border-lime-700 text-lime-700 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
+                        <button type="button" onclick="window.location.href = '{{path('app_new_containers_movements_new', {id:nc.id})}}'" class="pencil-button">
                             <i class="bi bi-pencil-fill text-xl"></i>
                         </button>
                     </div> 
