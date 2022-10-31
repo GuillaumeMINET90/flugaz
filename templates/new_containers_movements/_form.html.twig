@@ -1,9 +1,8 @@
 {{ form_start(form) }}
-<div class="grow-0 shrink-0 basis-auto my-4 w-full xl:w-5/12 px-3 lg:px-6 mb-12 xl:mb-0">
+<div class="grow-0 shrink-0 basis-auto my-4 w-full px-3 lg:px-6 mb-12 xl:mb-0 justify-center">
     <div>
-
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="mb-3 w-96">
                 <label for="container_number" class="form-label inline-block text-gray-600">
                     N° de bouteille <i class ="font-bold text-red-600">*</i>
                 </label>
@@ -19,40 +18,40 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="mb-3 w-96">
                 <label for="new_containers_movements_quantity_injected" class="form-label inline-block text-gray-600">
                     Quantité injectée <span class="italic">(en kg)</span> <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.quantity_injected)}}    
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="mb-3 w-96">
                 <label for="new_containers_movements_date" class="form-label inline-block text-gray-600">
                     Date d'intervention <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.date)}}    
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="mb-3 w-96">
                 <label for="new_containers_movements_cerfa_number" class="form-label inline-block text-gray-600">
                     N° du Cerfa <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.cerfa_number)}}   
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="mb-3 w-96">
                 <label for="new_containers_movements_customer" class="form-label inline-block text-gray-600">
                     Client <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.customer)}}    
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="mb-3 w-96">
                 <label for="new_containers_movements_remark" class="form-label inline-block text-gray-600">
                     Remarque
                 </label>

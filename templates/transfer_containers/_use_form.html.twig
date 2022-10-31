@@ -1,9 +1,9 @@
 {{ form_start(form) }}
-<div class="grow-0 shrink-0 basis-auto my-4 w-full xl:w-5/12 px-3 lg:px-6 mb-12 xl:mb-0">
+<div class="grow-0 shrink-0 basis-auto my-4 w-full px-3 lg:px-6 mb-12 xl:mb-0 justify-center">
     <div>
 
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="mb-3 w-96">
                 {{ form_row(form.used_container)}} 
             </div>
         </div>
@@ -12,16 +12,16 @@
                 {{ form_row(form.user)}}   
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="mb-3 w-96">
                 <label for="transfer_container_used_gaz" class="form-label inline-block text-gray-600">
                     Type de gaz
                 </label>
                 {{ form_row(form.gaz)}}    
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="mb-3 w-96">
                 <label for="transfer_container_used_total_weight" class="form-label inline-block text-gray-600">
                     Poid du fluide <span class="italic">( en kg )</span>
                 </label>

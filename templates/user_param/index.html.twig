@@ -3,17 +3,15 @@
 {% block title %}Hello UserParamController!{% endblock %}
 
 {% block body %}
-<div class="container mx-auto mt-24 px-4">
-    <div class="grid w-full justify-center">
+<div class="container mx-auto mt-24 lg:mt-12 px-4 justify-items-center ">
+    <div class="grid w-full">
         <h1 class="text-2xl text-center text-gray-800 font-bold m-4 ">
             Espace utilisateur
         </h1>
     </div>
 
-    <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="overflow-x-auto">
+            <div class="grid w-full justify-items-center">
+                <div class="lg:w-8/12">
                     <table class=" min-w-full text-center">
                         <tbody>
                             <tr class="bg-gray-100 border-b">
@@ -37,9 +35,65 @@
                     </table>
                 </div>
             </div>
-        </div>
+
+    <div class="grid w-full mt-6 ">
+        <h1 class="text-2xl  text-center text-gray-800 font-bold m-4  ">
+            Fournisseurs
+        </h1>
     </div>
 
+        <div class="grid w-full justify-items-center">
+            <div class="w-8/12">
+                    <table class="min-w-full text-center">
+                        <thead class="border-b bg-white">
+                            <tr>
+
+                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                    Nom
+                                </th>
+                                <th scope="col" class="hiddenxs text-sm font-bold text-gray-900 px-6 py-2">
+                                    Adresse
+                                </th>
+                                <th scope="col" class="hiddenxs text-sm font-bold text-gray-900 px-6 py-2">
+                                    Ville
+                                </th>
+                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                    Actif
+                                </th>
+                            </tr>
+                        </thead class="border-b">
+                        <tbody>
+                        {% for v in vendors %}
+                            <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                    {{ v.name }}
+                                </td>
+                                <td class="hiddenxs text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                    {{ v.street }} 
+                                </td>
+                                <td class="hiddenxs text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                    {{ v.city}}
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                {% if v.isActive %}
+                                    <i class="bi bi-toggle-on px-2 py-1 text-blue-600 text-3xl"></i>
+                                {% else %}
+                                    <i class="bi bi-toggle-off px-2 py-1 text-blue-700  text-3xl"></i>
+                                {% endif %}
+                                </td>
+                            </tr class="bg-white border-b">
+                            {% else %}
+                                <tr>
+                                    <td >Aucune charge effectuée</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                
+            </div>
+        </div>
+   
+        
 </div>
 
 {% endblock %}

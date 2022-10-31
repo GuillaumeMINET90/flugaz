@@ -1,0 +1,12 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+// Containers
+
+.card-menu-container{
+    @apply container mx-auto px-4 flex-col justify-center p-10; 
+}
+
+

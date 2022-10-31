@@ -1,0 +1,76 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+// Forms Buttons
+    .btn-dark{
+        @apply inline-block  m-3 px-6 py-2.5 bg-gray-800 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out;
+    }
+    .btn-green{
+        @apply inline-block m-3 px-6 py-2.5 bg-green-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out;
+    }
+    .btn-yellow{
+        @apply inline-block m-3 px-6 py-2.5 bg-yellow-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out;
+    }
+    .btn-fuchsia{
+        @apply inline-block mt-6 px-3 py-2 border-2 border-fuchsia-600 text-fuchsia-600 font-medium text-xs leading-tight uppercase rounded-full transition duration-150 ease-in-out;
+    }
+    .btn-orange{
+        @apply inline-block mt-6 px-3 py-2 border-2 border-orange-600 text-orange-600 font-medium text-xs leading-tight uppercase rounded-full transition duration-150 ease-in-out;
+    }
+    .btn-red-light{
+        @apply inline-block mt-6 px-3 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded-full transition duration-150 ease-in-out;
+    }
+    .btn-red-delete{
+        @apply inline-block m-3 px-6 py-2.5 bg-red-500 text-white font-medium text-sm leading-tight uppercase rounded-full shadow-md active:bg-red-700 active:shadow-lg transition duration-150 ease-in-out;
+    }
+    .btn-green-validation{
+        @apply inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out;
+    }
+    .btn-blue-return{
+        @apply inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out;
+    }
+
+    .btn-green:hover, .btn-dark:hover, .btn-blue:hover, .btn-green-validation:hover, .btn-red-delete:hover,.btn-orange:hover, .btn-red-light:hover, .btn-fuchsia:hover, .btn-blue-return:hover{
+        @apply shadow-lg;
+    }
+    .btn-dark:focus{
+        @apply bg-gray-900 shadow-lg outline-none ring-0;
+    }
+    .btn-green:focus, .btn-green-validation:focus {
+        @apply bg-green-600 shadow-lg outline-none ring-0;
+    }
+    .btn-yellow:focus{
+        @apply bg-yellow-900 shadow-lg outline-none ring-0;
+    }
+    .btn-orange:focus{
+        @apply bg-orange-900 shadow-lg outline-none ring-0;
+    }
+    .btn-blue-return:focus{
+        @apply bg-blue-700 shadow-lg outline-none ring-0;
+    }
+    .btn-red-light:focus{
+        @apply bg-red-700 shadow-lg outline-none ring-0;
+    }
+    .btn-red-delete:focus{
+        @apply bg-red-700 shadow-lg outline-none ring-0;
+    }
+    .btn-fuchsia:focus{
+        @apply bg-fuchsia-700 shadow-lg outline-none ring-0;
+    }
+
+
+
+    @screen md{
+        .btn-dark{
+            @apply w-80;
+        }
+        .btn-green{
+            @apply w-80;
+        }
+        .btn-yellow{
+            @apply w-80;
+        }
+    }
+

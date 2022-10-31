@@ -27,11 +27,11 @@ class Vendors
     #[ORM\Column(length: 255)]
     private ?string $city = null;
 
-    #[ORM\OneToMany(mappedBy: 'vendor', targetEntity: NewContainers::class)]
-    private Collection $newContainers;
-
     #[ORM\Column(nullable: true)]
     private ?bool $is_active = null;
+    
+    #[ORM\OneToMany(mappedBy: 'vendor', targetEntity: NewContainers::class)]
+    private Collection $newContainers;
 
     #[ORM\OneToMany(mappedBy: 'vendor', targetEntity: RecoveryContainers::class)]
     private Collection $recoveryContainers;
@@ -99,6 +99,18 @@ class Vendors
         return $this;
     }
 
+    public function isIsActive(): ?bool
+    {
+        return $this->is_active;
+    }
+
+    public function setIsActive(?bool $is_active): self
+    {
+        $this->is_active = $is_active;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, NewContainers>
      */
@@ -125,18 +137,6 @@ class Vendors
                 $newContainer->setVendor(null);
             }
         }
-
-        return $this;
-    }
-
-    public function isIsActive(): ?bool
-    {
-        return $this->is_active;
-    }
-
-    public function setIsActive(?bool $is_active): self
-    {
-        $this->is_active = $is_active;
 
         return $this;
     }

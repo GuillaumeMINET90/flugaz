@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vendors{% endblock %}
+
+{% block body %}
+    <h1>Vendors</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vendor.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ vendor.name }}</td>
+            </tr>
+            <tr>
+                <th>Street</th>
+                <td>{{ vendor.street }}</td>
+            </tr>
+            <tr>
+                <th>PostalCode</th>
+                <td>{{ vendor.postalCode }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ vendor.city }}</td>
+            </tr>
+            <tr>
+                <th>Is_active</th>
+                <td>{{ vendor.isActive ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_vendors_index') }}">back to list</a>
+
+    <a href="{{ path('app_vendors_edit', {'id': vendor.id}) }}">edit</a>
+
+    {{ include('vendors/_delete_form.html.twig') }}
+{% endblock %}
