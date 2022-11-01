@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -31,6 +32,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 12,
+        max: 4560,
+        minMessage: 'Le mot de passe ne peut être inférieur à {{ limit }} caractères',
+        maxMessage: 'Le mot de passe ne peut être supérieur à {{ limit }} caractères',
+    )]
     private ?string $password = null;
 
     #[ORM\Column(nullable: true)]

@@ -16,7 +16,7 @@ class UserParamController extends AbstractController
     public function index(UserRepository $userRepository, VendorsRepository $vendorsRepository): Response
     {
         $user = $userRepository->find($this->getUser());
-        $vendors = $vendorsRepository->findAll();
+        $vendors = $vendorsRepository->findBy([],['name' => 'ASC']);
         
         return $this->render('user_param/index.html.twig', compact('user','vendors'));
     }

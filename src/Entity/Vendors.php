@@ -3,8 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\VendorsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: VendorsRepository::class)]
@@ -22,6 +23,13 @@ class Vendors
     private ?string $street = null;
 
     #[ORM\Column]
+    #[Assert\Regex('/[0-9]{5}/')]
+    #[Assert\Length(
+        min: 5,
+        max: 5,
+        minMessage: 'Le code postal ne peut être inférieur à {{ limit }} caractères',
+        maxMessage: 'Le code postal ne peut être supérieur à {{ limit }} caractères',
+    )]
     private ?int $postalCode = null;
 
     #[ORM\Column(length: 255)]
