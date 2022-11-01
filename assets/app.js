@@ -7,7 +7,8 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/containers.scss';
-import './styles/cards.scss';
+import './styles/title.scss';
+import './styles/cards_items.scss';
 import './styles/forms.scss';
 import './styles/forms_buttons.scss';
 import './styles/app.css';

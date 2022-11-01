@@ -3,133 +3,80 @@
 {% block title %}TransferContainers index{% endblock %}
 
 {% block body %}
-<div class="container mx-auto px-4">
 
-    <div class="grid w-full justify-center mt-24">
-        <h1 class="text-2xl text-center text-gray-800 font-bold uppercase m-4 ">
-            Choisir une bouteille
+<section class="container mx-auto ">
+
+    <div class="header-title-container">
+        <h1>
+            Choisir une transfert
         </h1>
     </div>
 
-        <div class="grid md:grid-cols-3 gap-6 lg:gap-x-12">
-            <div class="mb-6 lg:mb-0">
-                <div class="block rounded-lg shadow-lg bg-white h-full">
-                <div class="p-6 text-center py-4">
-                    <p class="uppercase mb-4 text-sm">
-                    <strong>3 users</strong>
-                    </p>
-                    <h3 class="text-2xl mb-6">
-                    <strong>$ 799</strong>
-                    <small class="text-gray-500 text-sm">/year</small>
-                    </h3>
-
-                    <button type="button"
-                    class="inline-block px-6 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out w-full"
-                    style="background-color: hsl(0, 0%, 95%)" data-mdb-ripple="true" data-ripple-color="primary">
-                    Buy
-                    </button>
-                </div>
-                </div>
-            </div>
-
-            <div class="mb-6 lg:mb-0">
-                <div class="block rounded-lg shadow-lg bg-white h-full">
-                <div class="p-6 text-center py-4">
-                    <p class="uppercase mb-4 text-sm">
-                    <strong>4 users</strong>
-                    </p>
-                    <h3 class="text-2xl mb-6">
-                    <strong>$ 999</strong>
-                    <small class="text-gray-500 text-sm">/year</small>
-                    </h3>
-
-                    <button type="button"
-                    class="inline-block px-6 py-2.5 bg-transparent text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:text-blue-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-0 active:bg-gray-200 transition duration-150 ease-in-out w-full"
-                    style="background-color: hsl(0, 0%, 95%)" data-mdb-ripple="true" data-ripple-color="primary">
-                    Buy
-                    </button>
-                </div>
-                </div>
-            </div>
-
-            <div class="mb-6 lg:mb-0">
-                <div class="block rounded-lg shadow-lg bg-white h-full">
-                <div class="p-6 text-center py-4">
-                    <p class="uppercase mb-4 text-sm">
-                    <strong>More users</strong>
-                    </p>
-                    <h3 class="text-2xl mb-6">
-                    <strong>Custom offer</strong>
-                    </h3>
-
-                    <button type="button"
-                    class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full"
-                    data-mdb-ripple="true" data-ripple-color="primary">
-                    Contact us
-                    </button>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        {% set number = 0 %}
-        {% for tc in transferContainers %}
-            {% if tc.returnDate == NULL %}
+    <div class="card-holder">
+        <div class="card-holder-slip">
             
-                
-            <div class="flex m-4 justify-center w-full md:w-5/12">
-                <div class="flex  p-6 rounded-lg shadow-lg bg-slate-50 ">
-                    <div class="flex flex-col space-y-2 float-left ">
-                        <h5 class="text-gray-900 text-xl leading-tight font-medium mb-4 w-80">N° {{tc.number}} &emsp;&emsp; <span class="text-gray-400">{{tc.volume}} Litres</span>  </h5>
-                            <p class="text-gray-700 text-base mb-4 w-80">
-                                {% if tc.usedContainer == true %}
-                                    <i> Utilisateur actuel:</i> <span class="text-gray-500">{{tc.user.username}}</span> <br>
+
+            {% set number = 0 %}
+            {% for tc in transferContainers %}
+                    {% if tc.returnDate == NULL %}
+                        <div class="bottle-card">
+                            <div class="bottle-card-in">
+                                <div class="bottle-card-text-content">
+                                    <h5 >N° {{tc.number}} &nbsp;&nbsp; <span class="text-gray-400 ml-4"> {{tc.volume}} Litres</span>  </h5>
+                                        <p >
+                                                <i> Gaz:</i> 
+                                                    {% if tc.gaz is null %}
+                                                        <span class="text-gray-500">Aucun </span> <br>
+                                                    {% else %}
+                                                        <span class="text-gray-500">{{tc.gaz}}</span> <br>
+                                                    {% endif %}
+
+                                                <i> Poid du fluide:</i> 
+                                                    {% if tc.totalWeight is null %}
+                                                        <span class="text-gray-500"> Aucun </span> <br>
+                                                    {% else %}
+                                                        <span class="text-gray-500">{{tc.totalWeight}} <i>kg</i> </span> <br>
+                                                    {% endif %}  
+                                            {% set number = tc.number %}
+                                        </p>
+                                </div>
+                                <div class="bottle-card-buttons-action">
+                                {% if tc.user == app.user or tc.user == NULL %}
+                                    {% if tc.totalWeight == 0 %}
+                                    <div class="">
+                                        <button type="button" onclick="window.location.href = '{{path('app_transfer_containers_return', {id:tc.id})}}'" class=" btn-orange">
+                                            <i class="bi bi-truck text-xl"></i>
+                                        </button>
+                                    </div> 
+                                    {% endif %}
+                                    <div>
+                                        <button type="button" onclick="window.location.href = '{{path('app_transfer_containers_use', {id:tc.id})}}'" class=" btn-lime">
+                                            <i class="text-xl bi bi-calendar2-check"></i>
+                                        </button>
+                                    </div>
+                                {% else %}
+                                    {% if tc.usedContainer == true %}
+                                        <div  class="mt-3 w-full text-center">
+                                            <i> Utilisateur actuellement par: &nbsp; </i> <span class="text-gray-500">{{tc.user.username}}</span> <br>
+                                        </div>
+                                    {% endif %}
                                 {% endif %}
-                                    <i> Gaz:</i> 
-                                        {% if tc.gaz is null %}
-                                            <span class="text-gray-500">Aucun </span> <br>
-                                        {% else %}
-                                            <span class="text-gray-500">{{tc.gaz}}</span> <br>
-                                        {% endif %}
-                                    
-                                    <i> Poid du fluide:</i> 
-                                        {% if tc.totalWeight is null %}
-                                            <span class="text-gray-500"> Aucun </span> <br>
-                                        {% else %}
-                                            <span class="text-gray-500">{{tc.totalWeight}} <i>kg</i> </span> <br>
-                                        {% endif %}  
-                                {% set number = tc.number %}
-                            </p>
+                                </div> 
+                            </div>
+                        </div>
+                    {% else %}
+                    {% endif %}
+                {% else %}
+                    <div class="flex m-4 flex-row  justify-center ">
+                        <p class="text-gray-700 p-4 border-y-4 border-gray-200 font-bold text-base mt-12 ">
+                            Aucune bouteille de transfert en stock  
+                        </p>
                     </div>
-                    <div class="flex space-x-16 float-right">
-                            {% if tc.user == app.user or tc.user == NULL %}
-                                {% if tc.totalWeight == 0 %}
-                                    <button type="button" onclick="window.location.href = '{{path('app_transfer_containers_return', {id:tc.id})}}'" class="float-right btn-orange">
-                                        <i class="bi bi-truck text-xl"></i>
-                                    </button>
-                                {% endif %}
-                                <button type="button" onclick="window.location.href = '{{path('app_transfer_containers_use', {id:tc.id})}}'" class="float-right btn-fuchsia">
-                                    <i class="text-xl bi bi-calendar2-check"></i>
-                                </button>
-                            {% else %}
-                                <button type="button" class="btn-red-light" >
-                                    <i class="text-xl bi bi-x-lg"></i>
-                                </button>
-                            {% endif %}
-                    </div> 
-                </div>
-            </div>
-            {% else %}
-            {% endif %}
-        {% else %}
-            <div class="flex m-4 flex-row  justify-center ">
-                <p class="text-gray-700 p-4 border-y-4 border-gray-200 font-bold text-base mt-12 ">
-                    Aucune bouteille de transfert en stock  
-                </p>
-            </div>
 
-        {% endfor %}
+            {% endfor %}
 
-</div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

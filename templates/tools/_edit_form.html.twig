@@ -1,57 +1,57 @@
 {{ form_start(form) }}
-<div class="grow-0 shrink-0 basis-auto my-4 w-full xl:w-5/12 px-3 lg:px-6 mb-12 xl:mb-0">
+<div class="grow shrink-0 basis-auto my-4 w-full px-3 lg:px-6 mb-12 xl:mb-0 justify-center">
     <div>
 
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="form-widget">
                 <label for="tools_type" class="form-label inline-block text-gray-600">
                     Catégorie <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.type)}}
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="form-widget">
                 <label for="tools_denomination" class="form-label inline-block text-gray-600">
                    Dénomination <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.denomination)}}   
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="form-widget ">
                 <label for="tools_serial_number" class="form-label inline-block text-gray-600">
                     N° de série <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.serial_number)}} 
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="form-widget">
                 <label for="tools_control_date" class="form-label inline-block text-gray-600">
                     Date du contrôle  <span class="italic">( ou date d'achat)</span> <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.control_date)}}    
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="form-widget">
                 <label for="tools_next_control" class="form-label inline-block text-gray-600">
                     Date du prochain contrôle <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.next_control)}}    
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center">
+            <div class="form-widget">
                 <label for="tools_control_certificate" class="form-label inline-block text-gray-600">
                     N° du dernier certificat <i class ="font-bold text-red-600">*</i>
                 </label>
                 {{ form_row(form.control_certificate)}}   
             </div>
         </div>
-        <div class="grid grid-cols-1 gap-6 hidden">
-            <div class="mb-3 xl:w-96">
+        <div class="grid justify-center hidden">
+            <div class="form-widget">
                 <label for="tools_technicien" class="form-label inline-block text-gray-600">
                     Technicien
                 </label>

@@ -1,0 +1,101 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+
+
+// cards buttons
+
+.return-button{
+    @apply  inline-block px-3 py-2 border-2 border-orange-600 text-orange-600 rounded-full ; 
+}
+.array-button{
+    @apply inline-block px-3 py-2 border-2 border-gray-900 text-slate-900 rounded-full ; 
+}
+.pencil-button{
+    @apply inline-block px-3 py-2 border-2 border-lime-700 text-lime-700 rounded-full ; 
+}
+.return-button:hover, .array-button:hover, .pencil-button:hover{
+    @apply shadow-lg;
+}
+
+// cards titles
+.card-menu-container-title{
+    @apply grid w-full justify-center mt-12; 
+}
+
+.card-menu-container-title > h1{
+    @apply text-xl  text-gray-800 uppercase m-4 ; 
+}
+
+.card-menu-bottle-title{
+    @apply grid w-full justify-center mt-24 md:mt-12; 
+}
+.card-menu-bottle-title > h1{
+    @apply text-lg sm:text-2xl text-gray-800 font-bold uppercase m-4 ; 
+}
+
+
+
+// Cards
+
+.card-menu{
+    @apply m-5 rounded-lg bg-gray-100 max-w-lg h-60 justify-center shadow-lg;
+}
+.title-card-menu{
+    @apply text-gray-900 sm:text-2xl font-bold text-center;
+}
+.img_card-menu{
+    @apply object-fill mx-auto h-52  rounded-t-lg; 
+}
+
+.card-bte{
+    @apply flex m-5 rounded-lg bg-gray-100 shadow-lg justify-center; 
+}
+.div-card-img{
+    @apply flex flex-col md:flex-row md:max-w-xl; 
+}
+.img-card-bte{
+    @apply flex-1 w-full h-52 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg; 
+}
+
+//transfer / recovery / new - bottle cards
+
+.card-holder{
+    @apply flex flex-col;
+}
+.card-holder-slip{
+    @apply mt-4 flex flex-wrap justify-center;
+}
+
+// transfer / recovery - bottle cards
+
+.bottle-card{
+    @apply flex m-4  ; 
+}
+.bottle-card-in{
+    @apply flex flex-col p-6 rounded-lg shadow-lg bg-slate-50 px-3; 
+}
+.bottle-card-text-content{
+    @apply flex flex-col space-y-2 float-left; 
+}
+.bottle-card-text-content > h5{
+    @apply text-gray-900 text-xl leading-tight font-medium mb-4 w-full; 
+}
+.bottle-card-text-content > p{
+    @apply text-gray-700 text-base mb-2 w-80; 
+}
+.bottle-card-buttons-action{
+    @apply flex space-x-4 mt-2 justify-end; 
+}
+
+ .bottle-card:hover{
+     @apply duration-300 scale-100 shadow-xl; 
+ }
+
+ // new - bottle card
+
+ .bottle-card-in-new{
+    @apply flex flex-col p-6 rounded-lg shadow-lg bg-slate-100 ; 
+}

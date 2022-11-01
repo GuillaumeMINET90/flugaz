@@ -6,7 +6,7 @@
 
 
 
-// Forms
+// Forms in src/forms
 
 .form-the-line{
     @apply form-control  block mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none;
@@ -40,7 +40,11 @@
 }
 
 
+// forms in template
 
+.form-widget{
+    @apply mb-2 w-96 px-2;
+}
 
 
 
