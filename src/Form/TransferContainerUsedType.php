@@ -18,6 +18,7 @@ class TransferContainerUsedType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
          $gaz =[
+                'R22' => 'R22',
                 'R32' => 'R32',
                 'R134A' => 'R134A',
                 'R404A' => 'R404A',

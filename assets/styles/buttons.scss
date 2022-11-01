@@ -10,6 +10,9 @@
     .btn-green{
         @apply inline-block m-3 px-6 py-2.5 bg-green-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out;
     }
+    .add-vendor-btn{
+        @apply inline-block px-1 border-2 border-lime-700 text-lime-700 rounded-full hover:shadow-xl;
+    }
     .btn-yellow{
         @apply inline-block m-3 px-6 py-2.5 bg-yellow-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out;
     }
@@ -20,16 +23,16 @@
         @apply inline-block px-3 py-2 border-2 border-orange-600 text-orange-600  rounded-full hover:shadow-xl;
     }
     .btn-red-light{
-        @apply inline-block px-3 py-2 border-2 border-red-600 text-red-600 rounded-full transition;
+        @apply inline-block px-3 py-2 border-2 border-red-600 text-red-600 rounded-full ;
     }
     .btn-red-delete{
-        @apply inline-block m-3 px-6 py-2.5 bg-red-500 text-white font-medium text-sm leading-tight uppercase rounded-full shadow-md active:bg-red-700 active:shadow-lg transition duration-150 ease-in-out;
+        @apply inline-block m-3 px-6 py-2.5 bg-red-500 text-white font-medium text-sm leading-tight uppercase rounded-full shadow-md;
     }
     .btn-green-validation{
-        @apply inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out;
+        @apply inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-sm leading-tight uppercase rounded-full shadow-md ;
     }
     .btn-blue-return{
-        @apply inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out;
+        @apply inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-sm leading-tight uppercase rounded-full shadow-md;
     }
 
     .btn-dark:focus{

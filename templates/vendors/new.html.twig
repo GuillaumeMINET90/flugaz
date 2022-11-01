@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Vendors{% endblock %}
+{% block title %}Nouveau fournisseur{% endblock %}
 
 {% block body %}
-    <h1>Create new Vendors</h1>
+<section class="regular-container">
+
+    <div class="header-title-container">
+        <h1>
+            Ajouter un fournisseur
+        </h1>
+    </div>
 
     {{ include('vendors/_form.html.twig') }}
 
-    <a href="{{ path('app_vendors_index') }}">back to list</a>
+</section>
 {% endblock %}

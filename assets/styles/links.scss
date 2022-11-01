@@ -1,0 +1,17 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+// Containers
+
+.blue-link{
+    @apply text-blue-700 font-bold; 
+}
+.blue-link:hover{
+    @apply text-blue-500; 
+}
+
+
+
+

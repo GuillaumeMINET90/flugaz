@@ -40,6 +40,11 @@
         <h2>
             Fournisseurs
         </h2>
+        <div class="mt-4">
+            <button type="button" onclick="window.location.href = '{{ path('app_vendors_new') }}'" class="add-vendor-btn">
+                <i class="bi bi-plus-lg font-bold text-lg"></i>
+            </button>
+        </div>
     </div>
 
             <div class="up-table-holder">
@@ -47,7 +52,6 @@
                     <table class="general-table">
                         <thead>
                             <tr>
-
                                 <th scope="col" class="th-head-regular">
                                     Nom
                                 </th>
@@ -66,7 +70,9 @@
                         {% for v in vendors %}
                             <tr class="tr-stripped">
                                 <td class="th-body-regular">
+                                <a href="{{ path('app_vendors_edit', {id: v.id}) }}" class="blue-link">
                                     {{ v.name }}
+                                </a>
                                 </td>
                                 <td class="hiddenxs th-body-regular">
                                     {{ v.street }} 
