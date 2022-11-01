@@ -12,12 +12,6 @@
 .header-title-container >h1 {
     @apply text-2xl text-center text-gray-800 font-bold uppercase m-4; 
 }
-.element-subtitle-container{
-    @apply flex w-full justify-center mt-20 md:mt-20; 
-}
-.element-subtitle-container >h2 {
-    @apply text-2xl text-center text-gray-800 font-bold uppercase m-4; 
-}
 .table-title-container {
     @apply grid w-full ; 
 }

@@ -1,17 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Return TransferContainers{% endblock %}
+{% block title %}Retourner une bouteille de transfert{% endblock %}
 
 {% block body %}
-<div class="container mx-auto mt-24 px-4">
-    <div class="grid w-full justify-center">
-        <h1 class="text-2xl text-center text-gray-800 font-bold m-4 ">
+<section class="regular-container">
+
+    <div class="header-title-container">
+        <h1>
             Retourner bouteille N°{{container}}
         </h1>
     </div>
        
     {{ include('transfer_containers/_return_form.html.twig') }}
 
-</div>
+</section>
 
 {% endblock %}

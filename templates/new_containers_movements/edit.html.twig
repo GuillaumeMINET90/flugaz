@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit NewContainersMovements{% endblock %}
+{% block title %}Modifier un mouvement de bouteille neuve{% endblock %}
 
 {% block body %}
-<div class="container mx-auto mt-24 md:mt-16 px-4">
-    <div class="grid w-full justify-center">
-        <h1 class="text-2xl text-gray-800 font-bold m-4 ">
+<section class="regular-container">
+
+    <div class="header-title-container">
+        <h1>
             modifier une charge
         </h1>
     </div>
-        {{ include('new_containers_movements/_form.html.twig') }}
+    
+    {{ include('new_containers_movements/_form.html.twig') }}
 
-</div>
+</section>
 
 {% endblock %}

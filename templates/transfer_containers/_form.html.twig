@@ -1,8 +1,8 @@
 {{ form_start(form) }}
-<div class="grow-0 shrink-0 basis-auto my-4 w-full  px-3 lg:px-6 mb-12 xl:mb-0 justify-center">
+<div class="form-container-global">
     <div>
 
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="transfer_container_number" class="form-label inline-block text-gray-600">
                     N° de bouteille <i class ="font-bold text-red-600">*</i>
@@ -10,7 +10,7 @@
                 {{ form_row(form.number)}}    
             </div>
         </div>
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="transfer_container_vendor" class="form-label inline-block text-gray-600">
                     Fournisseur <i class ="font-bold text-red-600">*</i>
@@ -18,7 +18,7 @@
                 {{ form_row(form.vendor)}}    
             </div>
         </div>
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="transfer_container_purchase_date" class="form-label inline-block text-gray-600">
                     Date d'achat <i class ="font-bold text-red-600">*</i>
@@ -26,7 +26,7 @@
                 {{ form_row(form.purchase_date)}}    
             </div>
         </div>
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="transfer_container_tare" class="form-label inline-block text-gray-600">
                     Tare à vide <i class ="font-bold text-red-600">*</i>
@@ -34,7 +34,7 @@
                 {{ form_row(form.tare)}}    
             </div>
         </div>
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="transfer_container_volume" class="form-label inline-block text-gray-600">
                     Volume <span class="italic">(en Litre)</span> <i class ="font-bold text-red-600">*</i>

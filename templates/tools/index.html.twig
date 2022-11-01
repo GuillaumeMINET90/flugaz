@@ -3,80 +3,80 @@
 {% block title %}Tools index{% endblock %}
 
 {% block body %}
-<div class="container mx-auto mt-24 px-4">
-    <div class="grid w-full justify-center">
-        <h1 class="text-2xl text-gray-800  text-center font-bold m-4 ">
+<div class="table-container">
+    <div class="header-title-container">
+        <h1>
             Liste outillage
         </h1>
     </div>
     <div class="grid w-full justify-center">
-        <a href="{{ path('app_tools_new') }}" class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">
+        <a href="{{ path('app_tools_new') }}" class="add-tools">
         <i class="bi bi-plus-circle text-sm font-bold mr-2"> &nbsp; Ajouter outillage</i></a>
     </div>
 
-    <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+    <div class="table-holder">
+        <div class="table-holder-slip">
+            <div class="table-holder-margin">
                 <div class="overflow-hidden">
-                    <table class="min-w-full text-center">
-                        <thead class="border-b bg-white">
+                    <table class="general-table">
+                        <thead>
                             <tr>
-                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="td-head-regular">
                                     Type
                                 </th>
-                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="td-head-regular">
                                     Dénomination
                                 </th>
-                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="td-head-regular">
                                     No série
                                 </th>
-                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="td-head-regular">
                                     Prochain contrôle
                                 </th>
-                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="td-head-regular">
                                     Modifier
                                 </th>
                             </tr>
                         </thead class="border-b">
                         <tbody>
                         {% for tool in tools %}
-                            <tr class="bg-white border-b">
+                            <tr>
                             {% if (today|date('U') + 2592000 ) >= (tool.nextControl|date('U') + 0) %}
-                                <td class="px-6 py-2 whitespace-nowrap text-sm font-bold text-red-600">
+                                <td class="td-body-regular-red">
                                     <a href="{{ path('app_tools_edit', {id: tool.id}) }}">{{ tool.type }}</a>
                                 </td>
                             {% else %}
-                                <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <td class="td-body-regular">
                                     <a href="{{ path('app_tools_edit', {id: tool.id}) }}">{{ tool.type }}</a>
                                 </td>
                             {% endif %}
-                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                <td class="td-body-regular">
                                     {{ tool.denomination }}
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                <td class="td-body-regular">
                                     {{ tool.serialNumber }}
                                 </td>
                                     {% if (today|date('U') + 2592000 ) >= (tool.nextControl|date('U') + 0) %}
-                                <td class="px-6 py-2 whitespace-nowrap text-sm font-bold text-red-600">
+                                <td class="td-body-regular-red">
                                     {{ tool.nextControl ? tool.nextControl|date('d-m-Y') : '' }}
                                 </td>
                             {% else %}
-                                <td class="px-6 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <td class="td-body-regular">
                                     {{ tool.nextControl ? tool.nextControl|date('d-m-Y') : '' }}
                                 </td>
                             {% endif %}
                                 
-                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                <td class="td-body-regular">
                                 {% if app.user == tool.technicien %}
-                                <button type="button" onclick="window.location.href = '{{ path('app_tools_edit', {id: tool.id}) }}'" class="inline-block px-2 py-1 border-2 border-orange-600 text-orange-700 font-medium leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
+                                <button type="button" onclick="window.location.href = '{{ path('app_tools_edit', {id: tool.id}) }}'" class="btn-orange">
                                     <i class="bi bi-arrow-repeat text-lg"></i>
                                 </button>
                                 {% endif %}
                                 </td>
-                            </tr class="bg-white border-b">
+                            </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="5" >Aucune outil enregistré</td>
+                                    <td colspan="4" class="text-empty-table">Aucune charge effectuée</td>
                                 </tr>
                             {% endfor %}
                         </tbody>

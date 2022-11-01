@@ -6,11 +6,20 @@
 // Containers
 
 .card-menu-container{
-    @apply container mx-auto px-4 flex-col justify-center p-10; 
+    @apply  mx-auto px-4 flex-col justify-center p-10; 
 }
 
 .card-bottle-container{
-    @apply container mx-auto md:mt-20 px-4 flex-col justify-between  ; 
+    @apply  mx-auto md:mt-20 px-4 flex-col justify-between  ; 
 }
+
+.table-container{
+    @apply mx-auto md:mt-20 px-4 flex-col justify-between  ; 
+}
+
+.regular-container{
+    @apply mx-auto md:mt-20 px-4 justify-between  ; 
+}
+
 
 

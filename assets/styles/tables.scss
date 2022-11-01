@@ -1,0 +1,61 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+// Containers
+
+.table-holder{
+    @apply flex flex-col; 
+}
+.table-holder-slip{
+    @apply overflow-x-auto sm:mx-6 lg:mx-8 xl:mx-16; 
+}
+.table-holder-margin{
+    @apply py-2 inline-block min-w-full sm:px-6 lg:px-8; 
+}
+.general-table{
+    @apply min-w-full text-center; 
+}
+.general-table >thead{
+    @apply border-b bg-slate-100; 
+}
+.general-table >tbody{
+    @apply  bg-white; 
+}
+.td-head-regular{
+    @apply text-sm lg:text-xl font-bold text-gray-900 px-6 py-2; 
+}
+.td-body-regular{
+    @apply text-sm lg:text-lg text-gray-900 font-light px-6 py-2 whitespace-nowrap; 
+}
+.th-body-regular{
+    @apply text-sm font-bold text-gray-900 px-6 py-2; 
+}
+.tr-white-regular{
+    @apply bg-white border-b; 
+}
+.tr-grey-regular{
+    @apply bg-gray-100 border-b; 
+}
+
+.td-body-regular-red{
+    @apply text-sm lg:text-lg text-red-600 font-bold px-6 py-2 whitespace-nowrap; 
+}
+.text-empty-table{
+    @apply lg:text-2xl py-4;
+}
+
+
+// Userparam table
+
+.up-table-holder{
+    @apply grid w-full justify-items-center; 
+}
+.up-table-holder-slip{
+    @apply w-full lg:w-8/12; 
+}
+
+.tr-stripped:hover{
+    @apply duration-300 ease-in-out bg-gray-100;
+}

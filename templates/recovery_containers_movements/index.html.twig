@@ -3,66 +3,66 @@
 {% block title %}RecoveryContainersMovements index{% endblock %}
 
 {% block body %}
-<div class="container mx-auto mt-24 px-4">
-    <div class="grid w-full justify-center">
-        <h1 class="text-2xl text-gray-800 font-bold m-4 ">
+<div class="table-container">
+    <div class="header-title-container">
+        <h1>
             Tableau des charges
         </h1>
     </div>
-    <div class="grid w-full justify-center">
-        <h3 class="text-xl text-gray-500 font-bold m-2 ">
+    <div class="table-title-container  ">
+        <h3>
             Bouteille N° {{container.number}}
         </h3>
     </div>
 
-    <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+    <div class="table-holder">
+        <div class="table-holder-slip">
+            <div class="table-holder-margin">
                 <div class="overflow-hidden">
-                    <table class="min-w-full text-center">
-                        <thead class="border-b bg-white">
+                    <table class="general-table">
+                        <thead>
                             <tr>
-                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="td-head-regular">
                                   Client
                                 </th>
-                                <th scope="col" class="hiddenxs text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="hiddenxs td-head-regular">
                                   Charge
                                 </th>
-                                <th scope="col" class="hiddenxs text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="hiddenxs td-head-regular">
                                   Date
                                 </th>
-                                <th scope="col" class="text-sm font-bold text-gray-900 px-6 py-2">
+                                <th scope="col" class="td-head-regular">
                                   Modifier
                                 </th>
                             </tr>
                         </thead class="border-b">
                         <tbody>
                         {% for rcm in recovery_containers_movements %}
-                            <tr class="bg-white border-b">
-                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                            <tr>
+                                <td class="td-body-regular">
                                   {{ rcm.customer }}
                                 </td>
-                                <td class="hiddenxs text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                <td class="hiddenxs td-body-regular">
                                   {{ rcm.quantityRecovered }} <span class="text-gray-400"> kg</span> 
                                 </td>
-                                <td class="hiddenxs text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                <td class="hiddenxs td-body-regular">
                                   {{ rcm.date ? rcm.date|date('Y-m-d') : '' }}
                                 </td>
-                                <td class="text-sm text-gray-900 font-light px-6 py-2 whitespace-nowrap">
+                                <td class="td-body-regular">
                                 {% if app.user.username == rcm.technicien.username %}
-                                    <button type="button" onclick="window.location.href = '{{ path('app_recovery_containers_movements_edit', {'id': rcm.id}) }}'" class="inline-block px-2 py-1 border-2 border-orange-600 text-orange-700 font-medium leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
+                                    <button type="button" onclick="window.location.href = '{{ path('app_recovery_containers_movements_edit', {'id': rcm.id}) }}'" class="btn-orange">
                                         <i class="bi bi-arrow-repeat text-lg"></i>
                                     </button>
                                 {% else %}
-                                    <i class="inline-block px-2 py-1 border-2 border-red-600 text-red-700 font-medium leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 transition duration-150 ease-in-out">
+                                    <i class="btn-red-light">
                                         <i class="bi bi-person-x-fill text-lg"></i>
                                     </i>
                                 {% endif %}
                                 </td>
-                            </tr class="bg-white border-b">
+                            </tr>
                             {% else %}
-                                <tr class="my-4">
-                                    <td colspan="5" class="text-center font-bold my-4" >Aucune charge effectuée</td>
+                                <tr>
+                                    <td colspan="4" class="text-empty-table">Aucune charge récupérée</td>
                                 </tr>
                             {% endfor %}
                         </tbody>

@@ -6,14 +6,16 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import './styles/containers.scss';
-import './styles/title.scss';
-import './styles/cards_items.scss';
-import './styles/forms.scss';
-import './styles/forms_buttons.scss';
 import './styles/app.css';
+import './styles/buttons.scss';
+import './styles/cards_items.scss';
+import './styles/containers.scss';
+import './styles/forms.scss';
+import './styles/navbar.scss';
+import './styles/title.scss';
+import './styles/tables.scss';
 
 // start the Stimulus application
-import './bootstrap';
+// import './bootstrap';
 
 import 'tw-elements';

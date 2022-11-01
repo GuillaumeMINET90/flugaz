@@ -1,8 +1,8 @@
 {{ form_start(form) }}
 
-<div class="grow-0 shrink-0 basis-auto my-4 w-full px-3 lg:px-6 mb-12 xl:mb-0 justify-center">
+<div class="form-container-global">
     <div>
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="new_containers_number" class="form-label inline-block text-gray-600">
                     Numéro de bouteille
@@ -10,7 +10,7 @@
                 {{ form_row(form.number)}}    
             </div>
         </div>
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="new_containers_vendor" class="form-label inline-block text-gray-600">
                     Fournisseur
@@ -18,7 +18,7 @@
                 {{ form_row(form.vendor)}}    
             </div>
         </div>
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="new_containers_return_date" class="form-label inline-block text-gray-600">
                     Date de retour <i class ="font-bold text-red-600">*</i>
@@ -26,7 +26,7 @@
                 {{ form_row(form.return_date)}}    
             </div>
         </div>
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="new_containers_purchase_date" class="form-label inline-block text-gray-600">
                     Date d'achat
@@ -35,7 +35,7 @@
             </div>
         </div>
         
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="new_containers_gaz" class="form-label inline-block text-gray-600">
                     Type de gaz
@@ -43,7 +43,7 @@
                 {{ form_row(form.gaz)}}    
             </div>
         </div>
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="new_containers_initial_weight" class="form-label inline-block text-gray-600">
                     Poid du fluide <span class="italic">(en kg)</span> 
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="grid justify-center">
+        <div class="widget-container">
             <div class="form-widget">
                 <label for="new_containers_bill_number" class="form-label inline-block text-gray-600">
                     N° de BL

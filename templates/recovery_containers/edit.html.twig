@@ -1,19 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit RecoveryContainers{% endblock %}
+{% block title %}Editer bouteille de récupération{% endblock %}
 
 {% block body %}
-<div class="container mx-auto px-4">
+<section class="regular-container">
 
-    <div class="grid w-full justify-center mt-24">
-        <h1 class="text-2xl text-gray-800 font-bold uppercase m-4 ">
+    <div class="header-title-container">
+        <h1>
             Modifier une bouteille
         </h1>
     </div>
 
-
     {{ include('recovery_containers/_form_edit.html.twig', {'button_label': 'Update'}) }}
 
-</div>
+</section>
 
 {% endblock %}

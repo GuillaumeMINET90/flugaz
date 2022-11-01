@@ -41,9 +41,14 @@
 
 
 // forms in template
-
+.widget-container{
+    @apply flex justify-center;
+}
 .form-widget{
-    @apply mb-2 w-96 px-2;
+    @apply mb-2 w-96 lg:w-1/2 px-2;
+}
+.form-container-global{
+    @apply grow-0 shrink-0 basis-auto my-4 w-full px-3 lg:px-6 mb-12 xl:mb-0 justify-center ;
 }
 
 
