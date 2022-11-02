@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\RecoveryContainers;
 use App\Form\RecoveryContainersType;
-use App\Form\RecoveryContainersEditType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -51,7 +50,7 @@ class RecoveryContainersController extends AbstractController
         RecoveryContainers $recoveryContainer, 
         RecoveryContainersRepository $recoveryContainersRepository): Response
     {
-        $form = $this->createForm(RecoveryContainersEditType::class, $recoveryContainer);
+        $form = $this->createForm(RecoveryContainersType::class, $recoveryContainer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -5,10 +5,10 @@
 
 // Forms Buttons
     .btn-return{
-        @apply inline-block px-6 py-2.5 bg-blue-600 font-medium text-lg uppercase rounded-full shadow-lg ;
+        @apply inline-block px-6 py-2.5 bg-blue-600 font-medium text-lg leading-tight uppercase rounded-full shadow-lg ;
     }
     .btn-green-validation{
-        @apply inline-block px-6 py-2.5 bg-green-500  font-medium text-lg leading-tight uppercase rounded-full shadow-md ;
+        @apply inline-block px-6 py-2.5 bg-green-600 font-medium text-lg leading-tight uppercase rounded-full shadow-md ;
     }
     .btn-dark{
         @apply inline-block  m-3 px-6 py-2.5 bg-gray-800 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out;
@@ -32,7 +32,7 @@
         @apply inline-block px-3 py-2 border-2 border-red-600 text-red-600 rounded-full ;
     }
     .btn-red-delete{
-        @apply inline-block m-3 px-6 py-2.5 bg-red-500 text-white font-medium text-sm leading-tight uppercase rounded-full shadow-md;
+        @apply inline-block m-3 px-6 py-2.5 bg-red-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md;
     }
 
 

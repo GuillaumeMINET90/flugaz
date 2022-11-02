@@ -4,10 +4,18 @@
 
         <div class="widget-container">
             <div class="form-widget">
+                <label for="transfer_container_number" class="form-label inline-block text-gray-600">
+                    N° de bouteille <i class ="font-bold text-red-600">*</i>
+                </label>
+                {{ form_row(form.number,{'disabled': true})}}    
+            </div>
+        </div>
+        <div class="widget-container">
+            <div class="form-widget">
                 <label for="transfer_container_used_gaz" class="form-label inline-block text-gray-600">
                     Fournisseur
                 </label>
-                {{ form_row(form.vendor)}}    
+                {{ form_row(form.vendor,{'disabled': true})}}    
             </div>
         </div>
         <div class="widget-container">

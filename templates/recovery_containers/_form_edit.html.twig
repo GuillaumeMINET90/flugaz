@@ -6,7 +6,7 @@
                 <label for="recovery_containers_vendor" class="form-label inline-block text-gray-600">
                     Fournisseur
                 </label>
-                {{ form_row(form.vendor)}}    
+                {{ form_row(form.vendor,{'disabled': true})}}    
             </div>
         </div>        
         <div class="widget-container">
@@ -14,7 +14,7 @@
                 <label for="recovery_containers_gaz" class="form-label inline-block text-gray-600">
                     Type de gaz <i class ="font-bold text-red-600">*</i>
                 </label>
-                {{ form_row(form.gaz)}}    
+                {{ form_row(form.gaz,{'disabled': true})}}    
             </div>
         </div>
         <div class="widget-container">
@@ -25,15 +25,10 @@
                 {{ form_row(form.return_date)}}    
             </div>
         </div>
-        <div class="flex items-center justify-center">
 
-        <div class="hidden">
-                {{ form_row(form.number)}}    
-                {{ form_row(form.total_weight)}}
-                {{ form_row(form.tare)}}
-                {{ form_row(form.purchase_date)}}         
-        </div>      
+ 
         {{ form_row(form._token) }}
+        
         <div class="flex space-x-2 mt-3 mb-6 justify-center">
             <div>
                 <button type="button" onclick="window.location.href = '{{ path('app_recovery_containers_index') }}'" class="btn-return bg-blue-600 text-white"> 

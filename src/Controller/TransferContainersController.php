@@ -2,13 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\TransferContainers;
-use App\Repository\UserRepository;
 use App\Form\TransferContainersType;
 use App\Form\TransferContainerUsedType;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Form\TransferContainersReturnType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,7 +50,7 @@ class TransferContainersController extends AbstractController
     public function edit($id, Request $request, TransferContainers $transferContainer, TransferContainersRepository $transferContainersRepository): Response
     {
         $container = $transferContainersRepository->find($id)->getNumber();
-        $form = $this->createForm(TransferContainersReturnType::class, $transferContainer);
+        $form = $this->createForm(TransferContainersType::class, $transferContainer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

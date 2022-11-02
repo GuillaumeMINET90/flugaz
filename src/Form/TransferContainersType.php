@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Vendors;
 use App\Entity\TransferContainers;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -23,22 +25,6 @@ class TransferContainersType extends AbstractType
                 'attr' => ['class' => 'form-the-line-medium'],
                 'required'=> true,
             ])
-            ->add('tare', NumberType::class, [
-                'label' => false,
-                'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> true,
-            ])
-            ->add('purchase_date', DateType::class, [
-                'label' => false,
-                'widget' => 'single_text',
-                'attr' => ['class' => 'form-datepicker-wiwi'],
-                'required'=> true,
-            ])
-            ->add('volume', IntegerType::class, [
-                'label' => false,
-                'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> true,
-            ])
             ->add('vendor', EntityType::class, [
                 'label' => false,
                 'placeholder' => 'Sélectionner',
@@ -49,8 +35,45 @@ class TransferContainersType extends AbstractType
                                     ->orderBy('v.name', 'ASC');},
                 'choice_label' => 'name',
                 'required' => true,
-            ])
-        ;
+            ]);
+
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $e){
+            $form = $e->getForm();
+
+            /** @var TransferContainers */
+            $data = $e->getData();
+
+            if(!$data->getId()){
+                $form
+                ->add('tare', NumberType::class, [
+                    'label' => false,
+                    'attr' => ['class' => 'form-the-line-medium'],
+                    'required'=> true,
+                ])
+                ->add('purchase_date', DateType::class, [
+                    'label' => false,
+                    'widget' => 'single_text',
+                    'attr' => ['class' => 'form-datepicker-wiwi'],
+                    'required'=> true,
+                ])
+                ->add('volume', IntegerType::class, [
+                    'label' => false,
+                    'attr' => ['class' => 'form-the-line-medium'],
+                    'required'=> true,
+                ]);
+            }
+
+            if($data->getId()){
+                $form
+                ->add('return_date', DateType::class, [
+                    'label' => false,
+                    'widget' => 'single_text',
+                    'attr' => ['class' => 'form-datepicker-wiwi'],
+                    'required'=> true,
+                ]);
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

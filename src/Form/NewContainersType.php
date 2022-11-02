@@ -14,12 +14,15 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class NewContainersType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
             $gaz =[
+                'R22' => 'R22',
                 'R32' => 'R32',
                 'R134A' => 'R134A',
                 'R404A' => 'R404A',
@@ -33,31 +36,6 @@ class NewContainersType extends AbstractType
                 'attr' => ['class' => 'form-the-line-medium'],
                 'required'=> true,
             ])
-            ->add('gaz', ChoiceType::class, [
-                'label' => false,
-                'attr' => ['class' => 'form-select-medium'],
-                'placeholder' => 'Sélectionner',
-                'choices'=> $gaz,
-                'required'=> true,
-
-            ])
-            ->add('initial_weight', NumberType::class, [
-                'label' => false,
-                'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> true,
-            ])
-            ->add('purchase_date', DateType::class, [
-                'label' => false,
-                'widget' => 'single_text',
-                'attr' => ['class' => 'form-datepicker-wiwi'],
-                'required'=> true,
-            ])
-            ->add('return_date', DateType::class, [
-                'label' => false,
-                'widget' => 'single_text',
-                'attr' => ['class' => 'form-datepicker-wiwi'],
-                'required'=> false,
-                ])
             ->add('vendor', EntityType::class, [
                 'label' => false,
                 'placeholder' => 'Sélectionner',
@@ -69,12 +47,52 @@ class NewContainersType extends AbstractType
                 'choice_label' => 'name',
                 'required' => true,
             ])
-            ->add('bill_number', TextType::class, [
+            ->add('gaz', ChoiceType::class, [
                 'label' => false,
-                'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> false,             
+                'attr' => ['class' => 'form-select-medium'],
+                'placeholder' => 'Sélectionner',
+                'choices'=> $gaz,
+                'required'=> true,
+
             ])
         ;
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $e){
+            $form = $e->getForm();
+
+            /** @var NewContainers */
+            $data = $e->getData();
+
+            if( !$data->getId()){
+                $form
+                ->add('initial_weight', NumberType::class, [
+                    'label' => false,
+                    'attr' => ['class' => 'form-the-line-medium'],
+                    'required'=> true,
+                ])
+                ->add('purchase_date', DateType::class, [
+                    'label' => false,
+                    'widget' => 'single_text',
+                    'attr' => ['class' => 'form-datepicker-wiwi'],
+                    'required'=> true,
+                ])
+                ->add('bill_number', TextType::class, [
+                    'label' => false,
+                    'attr' => ['class' => 'form-the-line-medium'],
+                    'required'=> false,             
+                ]);
+            }
+            
+            if ($data->getId()) {
+                $form
+                 ->add('return_date', DateType::class, [
+                    'label' => false,
+                    'widget' => 'single_text',
+                    'attr' => ['class' => 'form-datepicker-wiwi'],
+                    'required'=> false,
+                ]);
+            }
+        });
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -45,18 +45,12 @@ class NewContainersController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_new_containers_show', methods: ['GET'])]
-    public function show(NewContainers $newContainer): Response
-    {
-        return $this->render('new_containers/show.html.twig', [
-            'new_container' => $newContainer,
-        ]);
-    }
+
 
     #[Route('/{id}/edit', name: 'app_new_containers_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, NewContainers $newContainer, NewContainersRepository $newContainersRepository): Response
     {
-        $form = $this->createForm(NewContainersEditType::class, $newContainer);
+        $form = $this->createForm(NewContainersType::class, $newContainer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

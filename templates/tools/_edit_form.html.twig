@@ -62,11 +62,11 @@
         {{ form_row(form._token) }}
         <div class="flex space-x-2 mt-3 justify-center">
             <div>
-                <button type="button" onclick="window.location.href = '{{ path('app_tools_index') }}'" class="btn-blue-return"> 
+                <button type="button" onclick="window.location.href = '{{ path('app_tools_index') }}'" class="btn-return bg-blue-600 text-white"> 
                     Retour liste
                 </button>
 
-                <button type="submit" class="btn-green-validation">
+                <button type="submit" class="btn-green-validation bg-green-600 text-white">
                     Sauvegarder
                 </button>
             </div>
@@ -74,7 +74,7 @@
 
         <div class="flex space-x-2 mt-1 justify-center">
             <div>
-                <button type="button" onclick="window.location.href = '{{ path('app_tools_delete', {id:id}) }}'" class="btn-red-delete">supprimer de l'inventaire</button>
+                <button type="button" onclick="window.location.href = '{{ path('app_tools_delete', {id:id}) }}'" class="btn-red-delete bg-red-600 text-white">supprimer de l'inventaire</button>
             </div>
         </div>
     </div>
