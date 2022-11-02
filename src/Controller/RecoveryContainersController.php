@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\TypeGazService;
 use App\Entity\RecoveryContainers;
 use App\Form\RecoveryContainersType;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,10 +30,15 @@ class RecoveryContainersController extends AbstractController
     }
 
     #[Route('/new', name: 'app_recovery_containers_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RecoveryContainersRepository $recoveryContainersRepository): Response
+    public function new(
+        Request $request, 
+        TypeGazService $typeGazService, 
+        RecoveryContainersRepository $recoveryContainersRepository): Response
     {
+        $gaz = $typeGazService->typeGaz();
+
         $recoveryContainer = new RecoveryContainers();
-        $form = $this->createForm(RecoveryContainersType::class, $recoveryContainer);
+        $form = $this->createForm(RecoveryContainersType::class, $recoveryContainer, ['gaz' => $gaz]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -46,11 +52,14 @@ class RecoveryContainersController extends AbstractController
 
     #[Route('/{id}/edit', name: 'app_recovery_containers_edit', methods: ['GET', 'POST'])]
     public function edit(
-        Request $request, 
+        Request $request,
+        TypeGazService $typeGazService, 
         RecoveryContainers $recoveryContainer, 
         RecoveryContainersRepository $recoveryContainersRepository): Response
-    {
-        $form = $this->createForm(RecoveryContainersType::class, $recoveryContainer);
+    {   
+        $gaz = $typeGazService->typeGaz();
+
+        $form = $this->createForm(RecoveryContainersType::class, $recoveryContainer, ['gaz' => $gaz]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

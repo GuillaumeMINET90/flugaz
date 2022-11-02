@@ -10,10 +10,44 @@
             Réserver bouteille {{transferContainer.number}}
         </h1>
     </div>
-       
+    {% for message in app.flashes('FormError') %}
+    {# <div class="message-alert" role="alert">
+        <strong class="mr-1">Erreur: </strong> {{ message }}
+        <button type="button" class="" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> #}
+ 
+    <div class="widget-container">
+        <div class="form-widget text-center ">
+            <span class="text-red-700 text-lg text-center my-4 w-full fade show"> <strong >Erreur: </strong> {{ message }} </span>
+        </div>
+    </div>
+
+	{% endfor %}
     {{ include('transfer_containers/_use_form.html.twig') }}
 
 </section>
 
+<script>
+
+        const gaz = document.querySelector('#transfer_container_used_gaz')
+        const weight = document.querySelector('#transfer_container_used_total_weight')
+        const checkbox = document.querySelector('#transfer_container_used_used_container')
+        const submitBtn = document.querySelector('.btn-green-validation')
+
+
+    checkbox.onclick = () => {
+
+        if (!checkbox.checked && weight.value && gaz.value){
+            let clearForm =  confirm('Voulez-vous vider la réservation?')
+            if(clearForm){
+                checkbox.checked = false
+                weight.value = ''
+                gaz.value = ''
+                submitBtn.click()
+            }
+        }
+    }
+
+</script>
 
 {% endblock %}

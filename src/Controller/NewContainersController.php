@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\NewContainers;
 use App\Form\NewContainersType;
-use App\Form\NewContainersEditType;
 use App\Repository\NewContainersRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\NewContainersMovementsRepository;
+use App\Repository\RefrigerantsRepository;
+use App\Service\TypeGazService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -17,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[IsGranted('ROLE_USER')]
 class NewContainersController extends AbstractController
 {
+    
     #[Route('/', name: 'app_new_containers_index', methods: ['GET'])]
     public function index(NewContainersRepository $newContainersRepository, NewContainersMovementsRepository $newContainersMovementsRepository): Response
     {
@@ -27,10 +29,12 @@ class NewContainersController extends AbstractController
     }
 
     #[Route('/new', name: 'app_new_containers_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, NewContainersRepository $newContainersRepository): Response
+    public function new(Request $request, TypeGazService $typeGazService, NewContainersRepository $newContainersRepository): Response
     {
+        $gaz = $typeGazService->typeGaz();
+
         $newContainer = new NewContainers();
-        $form = $this->createForm(NewContainersType::class, $newContainer);
+        $form = $this->createForm(NewContainersType::class, $newContainer, ['gaz' => $gaz]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -39,18 +43,15 @@ class NewContainersController extends AbstractController
             return $this->redirectToRoute('app_new_containers_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('new_containers/new.html.twig', [
-            'new_container' => $newContainer,
-            'form' => $form,
-        ]);
+        return $this->renderForm('new_containers/new.html.twig', compact('newContainer', 'form'));
     }
 
-
-
     #[Route('/{id}/edit', name: 'app_new_containers_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, NewContainers $newContainer, NewContainersRepository $newContainersRepository): Response
+    public function edit(Request $request, TypeGazService $typeGazService, NewContainers $newContainer, NewContainersRepository $newContainersRepository): Response
     {
-        $form = $this->createForm(NewContainersType::class, $newContainer);
+        $gaz = $typeGazService->typeGaz();
+
+        $form = $this->createForm(NewContainersType::class, $newContainer, ['gaz' => $gaz]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -59,10 +60,7 @@ class NewContainersController extends AbstractController
             return $this->redirectToRoute('app_new_containers_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('new_containers/edit.html.twig', [
-            'new_container' => $newContainer,
-            'form' => $form,
-        ]);
+        return $this->renderForm('new_containers/edit.html.twig',  compact('newContainer', 'form'));
     }
 
     #[Route('/{id}', name: 'app_new_containers_delete', methods: ['POST'])]
@@ -74,4 +72,6 @@ class NewContainersController extends AbstractController
 
         return $this->redirectToRoute('app_new_containers_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }

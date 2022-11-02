@@ -6,6 +6,7 @@ use App\Entity\NewContainers;
 use Doctrine\ORM\EntityRepository;
 use App\Entity\NewContainersMovements;
 use App\Entity\User;
+use App\Repository\RefrigerantsRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -30,11 +31,6 @@ class NewContainersMovementsType extends AbstractType
                                     ->orderBy('c.number', 'ASC');},
                 'choice_label' => 'number',
                 'required' => true,
-            ])
-            ->add('quantity_rest', NumberType::class, [
-                'label' => false,
-                'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> false,
             ])
             ->add('quantity_injected', NumberType::class, [
                 'label' => false,

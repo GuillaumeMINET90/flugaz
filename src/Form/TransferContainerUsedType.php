@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\User;
 use App\Entity\TransferContainers;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -12,19 +14,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\FormError;
 
 class TransferContainerUsedType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-         $gaz =[
-                'R22' => 'R22',
-                'R32' => 'R32',
-                'R134A' => 'R134A',
-                'R404A' => 'R404A',
-                'R407C' => 'R407C',
-                'R410A' => 'R410A',
-            ];
+
         $builder
 
             ->add('user', EntityType::class, [
@@ -47,7 +43,7 @@ class TransferContainerUsedType extends AbstractType
                 'label' => false,
                 'attr' => ['class' => 'form-select-medium'],
                 'placeholder' => 'Sélectionner',
-                'choices'=> $gaz,
+                'choices'=> $options['gaz'],
                 'required'=> false,
 
             ])
@@ -57,12 +53,14 @@ class TransferContainerUsedType extends AbstractType
                 'required'=> false,
                 ])
         ;
+       
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => TransferContainers::class,
+            'gaz' => null,
         ]);
     }
 }

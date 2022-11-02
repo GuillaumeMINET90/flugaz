@@ -5,22 +5,22 @@
 
 // Forms Buttons
     .btn-return{
-        @apply inline-block px-6 py-2.5 bg-blue-600 font-medium text-lg leading-tight uppercase rounded-full shadow-lg ;
+        @apply inline-block px-6 py-2.5 font-medium text-sm md:text-lg leading-tight uppercase rounded-full shadow-lg ;
     }
     .btn-green-validation{
-        @apply inline-block px-6 py-2.5 bg-green-600 font-medium text-lg leading-tight uppercase rounded-full shadow-md ;
+        @apply inline-block px-6 py-2.5  font-medium text-sm md:text-lg  leading-tight uppercase rounded-full shadow-md ;
     }
     .btn-dark{
-        @apply inline-block  m-3 px-6 py-2.5 bg-gray-800 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out;
+        @apply inline-block  m-3 px-6 py-2.5 bg-gray-800 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md;
     }
     .btn-green{
-        @apply inline-block m-3 px-6 py-2.5 bg-green-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out;
+        @apply inline-block m-3 px-6 py-2.5 bg-green-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md;
     }
     .add-vendor-btn{
         @apply inline-block px-1 border-2 border-lime-700 text-lime-700 rounded-full hover:shadow-xl;
     }
     .btn-yellow{
-        @apply inline-block m-3 px-6 py-2.5 bg-yellow-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out;
+        @apply inline-block m-3 px-6 py-2.5 bg-yellow-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md;
     }
     .btn-lime{
         @apply inline-block px-3 py-2 border-2 border-lime-700 text-lime-700 rounded-full hover:shadow-xl;
@@ -32,9 +32,13 @@
         @apply inline-block px-3 py-2 border-2 border-red-600 text-red-600 rounded-full ;
     }
     .btn-red-delete{
-        @apply inline-block m-3 px-6 py-2.5 bg-red-500 text-white font-medium text-lg leading-tight uppercase rounded-full shadow-md;
+        @apply inline-block m-3 px-6 py-2.5 bg-red-500 text-white font-medium text-sm md:text-lg  leading-tight uppercase rounded-full shadow-md;
+    }
+    .delete-reservation{
+        @apply inline-block px-6 py-2.5  font-medium text-sm md:text-lg leading-tight uppercase rounded-full shadow-md ;
     }
 
+// --- Focus
 
 
     .btn-dark:focus{
@@ -65,11 +69,20 @@
         @apply inline-block px-6 mb-4 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md ;
     }
 
+// --- hover   
+
+
     .btn-green:hover, .btn-dark:hover, .btn-blue:hover, .btn-green-validation:hover, 
     .btn-red-delete:hover,.btn-orange:hover, .btn-red-light:hover, .btn-fuchsia:hover, 
     .add-tools:hover, .btn-return:hover{
         @apply shadow-xl;
     }
+
+// display
+
+.delete-reservation{
+    display: none;
+}
     
     @screen md{
         .btn-dark{

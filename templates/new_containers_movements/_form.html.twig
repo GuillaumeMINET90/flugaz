@@ -6,7 +6,7 @@
                 <label for="container_number" class="form-label inline-block text-gray-600">
                     N° de bouteille <i class ="font-bold text-red-600">*</i>
                 </label>
-                <input type="text" class="form-the-line-medium" id="container_number" value="{{container.number}}" readonly/>
+                {{ form_row(form.new_container,{'disabled':true})}} 
             </div>
         </div>
         <div class="widget-container hidden">
@@ -59,16 +59,6 @@
             </div>
         </div>
 
-
-        <div class="grid grid-cols-1 gap-6 hidden">
-            <div class="form-widget">
-                <label for="new_containers_movements_new_container" class="form-label inline-block text-gray-600">
-                    Bouteille 
-                </label>
-                {{ form_row(form.new_container)}}   
-                {{ form_row(form.quantity_rest)}}   
-            </div>
-        </div>
         {{ form_row(form._token) }}
         <div class="flex space-x-2 mt-3 mb-6 justify-center">
             <div>

@@ -44,9 +44,9 @@ class RecoveryContainersType extends AbstractType
             ])
             ->add('gaz', ChoiceType::class, [
                 'label' => false,
-                'attr' => ['class' => 'form-the-line-medium-gray'],
+                'attr' => ['class' => 'form-the-line-select'],
                 'placeholder' => 'Sélectionner',
-                'choices'=> $gaz,
+                'choices'=> $options['gaz'],
                 'required'=> true,
             ])
 
@@ -64,23 +64,23 @@ class RecoveryContainersType extends AbstractType
                 $form
                 ->add('number', IntegerType::class, [
                     'label' => false,
-                    'attr' => ['class' => 'form-the-line-medium-gray'],
+                    'attr' => ['class' => 'form-the-line-medium'],
                     'required'=> true,
                 ])
                 ->add('tare', NumberType::class, [
                     'label' => false,
-                    'attr' => ['class' => 'form-the-line-medium-gray'],
+                    'attr' => ['class' => 'form-the-line-medium'],
                     'required'=> true,
                 ])
                 ->add('purchase_date', DateType::class, [
                     'label' => false,
                     'widget' => 'single_text',
-                    'attr' => ['class' => 'form-datepicker-wiwi-gray'],
+                    'attr' => ['class' => 'form-datepicker-wiwi'],
                     'required'=> true,
                 ])
                 ->add('total_weight', NumberType::class, [
                     'label' => false,
-                    'attr' => ['class' => 'form-the-line-medium-gray'],
+                    'attr' => ['class' => 'form-the-line-medium'],
                     'required'=> true,
                 ]);    
             }
@@ -100,6 +100,7 @@ class RecoveryContainersType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => RecoveryContainers::class,
+            'gaz' => null,
         ]);
     }
 }

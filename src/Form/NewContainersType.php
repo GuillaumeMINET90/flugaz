@@ -19,16 +19,11 @@ use Symfony\Component\Form\FormEvents;
 
 class NewContainersType extends AbstractType
 {
+
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-            $gaz =[
-                'R22' => 'R22',
-                'R32' => 'R32',
-                'R134A' => 'R134A',
-                'R404A' => 'R404A',
-                'R407C' => 'R407C',
-                'R410A' => 'R410A',
-            ];
+
 
         $builder
             ->add('number', IntegerType::class, [
@@ -51,7 +46,7 @@ class NewContainersType extends AbstractType
                 'label' => false,
                 'attr' => ['class' => 'form-select-medium'],
                 'placeholder' => 'Sélectionner',
-                'choices'=> $gaz,
+                'choices'=> $options['gaz'],
                 'required'=> true,
 
             ])
@@ -99,6 +94,7 @@ class NewContainersType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => NewContainers::class,
+            'gaz' => null,
         ]);
     }
 }

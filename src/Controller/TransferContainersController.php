@@ -10,8 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\TransferContainersRepository;
+use App\Service\TypeGazService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+use function PHPUnit\Framework\returnSelf;
 
 #[Route('/transfer/containers')]
 #[IsGranted('ROLE_USER')]
@@ -62,15 +65,27 @@ class TransferContainersController extends AbstractController
         return $this->renderForm('transfer_containers/edit.html.twig', compact('transferContainer', 'form', 'container'));
     }
     #[Route('/{id}/use_container', name: 'app_transfer_containers_use', methods: ['GET', 'POST'])]
-    public function use($id, Request $request, TransferContainersRepository $transferContainersRepository, EntityManagerInterface $em): Response
+    public function use($id, Request $request, TypeGazService $typeGazService, TransferContainersRepository $transferContainersRepository, EntityManagerInterface $em): Response
     {
         $transferContainer = $transferContainersRepository->find($id);
 
-        $form = $this->createForm(TransferContainerUsedType::class, $transferContainer);
+        $gaz = $typeGazService->typeGaz();
+        
+        $form = $this->createForm(TransferContainerUsedType::class, $transferContainer, ['gaz' => $gaz]);
         $form->get('user')->setData($this->getUser());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $weight = $form->get('total_weight')->getViewData('total_weight');
+            $gaz = $form->get('gaz')->getViewData('gaz');
+
+            if( $gaz && !$weight || !$gaz && $weight){
+
+                $this->addFlash('FormError', 'Le type ou le volume du gaz ne peut exister l\'un sans l\'autre!');
+                return $this->redirectToRoute('app_transfer_containers_use', ['id' => $id], Response::HTTP_SEE_OTHER);
+            } else {
+
 
             if (intval($form->get('used_container')->getViewData('used_container')) === 1) {
 
@@ -89,6 +104,7 @@ class TransferContainersController extends AbstractController
                 $transferContainer->setTotalWeight(floatval($form->get('total_weight')->getViewData('total_weight')));
 
                 $em->flush($transferContainer);
+            }
             }
 
             return $this->redirectToRoute('app_transfer_containers_index', [], Response::HTTP_SEE_OTHER);
