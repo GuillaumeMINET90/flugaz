@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\NewContainersRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: NewContainersRepository::class)]
@@ -19,12 +20,24 @@ class NewContainers
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\Length(
+        min: 5,
+        max: 10,
+        minMessage: 'Le numéro ne peut être inférieur à {{ limit }} ',
+        maxMessage: 'Le numéro ne peut être supérieur à {{ limit }} ',
+    )]
     private ?int $number = null;
 
     #[ORM\Column(length: 8)]
     private ?string $gaz = null;
 
     #[ORM\Column]
+    #[Assert\LessThan(
+        value: 26,
+        message: 'Le poid ne peut pas être supérieur à {{ compared_value }} kg.',)]
+    #[Assert\GreaterThan(
+        value:7,
+        message:'Le poid ne peut pas être inférieur à {{ compared_value }} kg.')]
     private ?float $initial_weight = null;
 
     #[ORM\ManyToOne(inversedBy: 'newContainers')]
@@ -32,9 +45,11 @@ class NewContainers
     private ?Vendors $vendor = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\LessThan(value:'tomorrow', message:'La date ne peut pas être supérieure à {{ compared_value }}')]
     private ?\DateTimeInterface $purchase_date = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\LessThan(value:'tomorrow', message:'La date ne peut pas être supérieure à {{ compared_value }}')]
     private ?\DateTimeInterface $return_date = null;
 
     #[ORM\OneToMany(mappedBy: 'new_container', targetEntity: NewContainersMovements::class)]

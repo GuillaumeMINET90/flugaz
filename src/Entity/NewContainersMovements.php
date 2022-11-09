@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\NewContainersMovementsRepository;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: NewContainersMovementsRepository::class)]
@@ -25,6 +26,7 @@ class NewContainersMovements
     private ?float $quantity_injected = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\LessThan(value:'tomorrow', message:'La date ne peut pas être supérieure à {{ compared_value }}')]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 15)]

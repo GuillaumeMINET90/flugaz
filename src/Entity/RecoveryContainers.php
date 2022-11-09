@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use App\Repository\RecoveryContainersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: RecoveryContainersRepository::class)]
@@ -19,6 +20,12 @@ class RecoveryContainers
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\Length(
+        min: 5,
+        max: 10,
+        minMessage: 'Le numéro ne peut être inférieur à {{ limit }} ',
+        maxMessage: 'Le numéro ne peut être supérieur à {{ limit }} ',
+    )]
     private ?int $number = null;
 
     #[ORM\Column(length: 8)]
@@ -32,9 +39,11 @@ class RecoveryContainers
     private ?Vendors $vendor = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+     #[Assert\LessThan(value:'tomorrow', message:'La date ne peut pas être supérieure à {{ compared_value }}')]
     private ?\DateTimeInterface $purchase_date = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+     #[Assert\LessThan(value:'tomorrow', message:'La date ne peut pas être supérieure à {{ compared_value }}')]
     private ?\DateTimeInterface $return_date = null;
 
     #[ORM\Column(nullable: true)]

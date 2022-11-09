@@ -23,23 +23,23 @@ class RecoveryContainersMovementsType extends AbstractType
             ->add('quantity_recovered', NumberType::class, [
                 'label' => false,
                 'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> false,
+                'required'=> true,
             ])
             ->add('date', DateType::class, [
                 'label' => false,
                 'widget' => 'single_text',
                 'attr' => ['class' => 'form-datepicker-wiwi'],
-                'required'=> false,
+                'required'=> true,
                 ])
             ->add('cerfa_number', TextType::class, [
                 'label' => false,
                 'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> false,             
+                'required'=> true,             
             ])
             ->add('customer', TextType::class, [
                 'label' => false,
                 'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> false,             
+                'required'=> true,             
             ])
             ->add('remark', TextareaType::class, [
                 'label' => false,

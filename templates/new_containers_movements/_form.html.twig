@@ -1,24 +1,25 @@
 {{ form_start(form) }}
 <div class="form-container-global">
     <div>
-        <div class="widget-container">
-            <div class="form-widget">
-                <label for="container_number" class="form-label inline-block text-gray-600">
-                    N° de bouteille <i class ="font-bold text-red-600">*</i>
-                </label>
-                {{ form_row(form.new_container,{'disabled':true})}} 
+        <div class="widget-container ">
+            <div class="form-widget mb-2">
+                <span class="text-xl"> Bouteille N° {{container.number}} - {{container.gaz}} </span>
             </div>
-        </div>
         <div class="widget-container hidden">
             <div class="form-widget">
                 <label for="new_containers_movements_technicien" class="form-label inline-block text-gray-600">
                     Technicien
                 </label>
                 {{ form_row(form.technicien)}}   
+                <label for="container_number" class="form-label inline-block text-gray-600">
+                    N° de bouteille <i class ="font-bold text-red-600">*</i>
+                </label>
+                {{ form_row(form.new_container)}} 
+            </div>
             </div>
         </div>
 
-        <div class="widget-container">
+        <div class="widget-container mt-3">
             <div class="form-widget">
                 <label for="new_containers_movements_quantity_injected" class="form-label inline-block text-gray-600">
                     Quantité injectée <span class="italic">(en kg)</span> <i class ="font-bold text-red-600">*</i>

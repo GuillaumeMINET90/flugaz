@@ -40,7 +40,7 @@ class RecoveryContainersMovementsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $recoveryContainersMovementsRepository->save($recoveryContainersMovement, true);
 
-            return $this->redirectToRoute('app_recovery_containers_movements_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_recovery_containers_movements_index', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('recovery_containers_movements/new.html.twig', compact('container', 'recoveryContainersMovement', 'form'));
