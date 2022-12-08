@@ -3,10 +3,20 @@
     <div>
         <div class="widget-container">
             <div class="form-widget">
+                <label for="new_containers_number"  class="form-label inline-block text-gray-600">
+                    Numéro de bouteille
+                </label>
+                <input type="text"class="readonly-form" value="{{recoveryContainer.number}}" readonly />              
+ 
+            </div>
+        </div>
+        <div class="widget-container">
+            <div class="form-widget">
                 <label for="recovery_containers_vendor" class="form-label inline-block text-gray-600">
                     Fournisseur
                 </label>
-                {{ form_row(form.vendor,{'disabled': true})}}    
+                <input type="text"class="readonly-form" value="{{recoveryContainer.vendor.name}}" readonly />         
+
             </div>
         </div>        
         <div class="widget-container">
@@ -14,7 +24,7 @@
                 <label for="recovery_containers_gaz" class="form-label inline-block text-gray-600">
                     Type de gaz <i class ="font-bold text-red-600">*</i>
                 </label>
-                {{ form_row(form.gaz,{'disabled': true})}}    
+                <input type="text"class="readonly-form" value="{{recoveryContainer.gaz}}" readonly />         
             </div>
         </div>
         <div class="widget-container">
@@ -26,7 +36,11 @@
             </div>
         </div>
 
- 
+        <div class="hidden">
+            {{ form_row(form.vendor)}}
+            {{ form_row(form.gaz)}}        
+        </div>
+
         {{ form_row(form._token) }}
         
         <div class="flex space-x-2 mt-3 mb-6 justify-center">

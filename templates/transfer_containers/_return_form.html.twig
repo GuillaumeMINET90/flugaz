@@ -7,7 +7,8 @@
                 <label for="transfer_container_number" class="form-label inline-block text-gray-600">
                     N° de bouteille <i class ="font-bold text-red-600">*</i>
                 </label>
-                {{ form_row(form.number,{'disabled': true})}}    
+                <input type="text"class="readonly-form" value="{{transferContainer.number}}" readonly /> 
+                  
             </div>
         </div>
         <div class="widget-container">
@@ -15,7 +16,7 @@
                 <label for="transfer_container_used_gaz" class="form-label inline-block text-gray-600">
                     Fournisseur
                 </label>
-                {{ form_row(form.vendor,{'disabled': true})}}    
+                <input type="text"class="readonly-form" value="{{transferContainer.vendor.name}}" readonly />  
             </div>
         </div>
         <div class="widget-container">
@@ -27,6 +28,10 @@
             </div>
         </div>
 
+        <div class="hidden">
+        {{ form_row(form.number)}}  
+        {{ form_row(form.vendor)}}  
+        </div>
 
         {{ form_row(form._token) }}
         <div class="flex space-x-2 mt-3 justify-center">

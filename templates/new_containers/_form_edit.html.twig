@@ -7,7 +7,8 @@
                 <label for="new_containers_number"  class="form-label inline-block text-gray-600">
                     Numéro de bouteille
                 </label>
-                {{ form_row(form.number,{'disabled': true})}}    
+                <input type="text"class="readonly-form" value="{{newContainer.number}}" readonly />              
+ 
             </div>
         </div>
         <div class="widget-container">
@@ -15,7 +16,7 @@
                 <label for="new_containers_vendor" class="form-label inline-block text-gray-600">
                     Fournisseur
                 </label>
-                {{ form_row(form.vendor,{'disabled': true})}}    
+                <input type="text"class="readonly-form" value="{{newContainer.vendor.name}}" readonly />
             </div>
         </div>
         <div class="widget-container">
@@ -23,7 +24,7 @@
                 <label for="new_containers_gaz" class="form-label inline-block text-gray-600">
                     Type de gaz
                 </label>
-                {{ form_row(form.gaz,{'disabled': true})}}    
+                <input type="text"class="readonly-form" value="{{newContainer.gaz}}" readonly />
             </div>
         </div>
         <div class="widget-container">
@@ -35,6 +36,10 @@
             </div>
         </div>
 
+        <div class="hidden">
+        toto 
+            {{ form_row(form.gaz)}}   
+        </div>
         
 
         {{ form_row(form._token) }}

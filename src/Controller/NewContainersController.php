@@ -55,8 +55,8 @@ class NewContainersController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $newContainersRepository->save($newContainer, true);
-
+           $newContainersRepository->save($newContainer, true);
+           
             return $this->redirectToRoute('app_new_containers_index', [], Response::HTTP_SEE_OTHER);
         }
 

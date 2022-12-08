@@ -26,22 +26,7 @@ class NewContainersType extends AbstractType
 
 
         $builder
-            ->add('number', IntegerType::class, [
-                'label' => false,
-                'attr' => ['class' => 'form-the-line-medium'],
-                'required'=> true,
-            ])
-            ->add('vendor', EntityType::class, [
-                'label' => false,
-                'placeholder' => 'Sélectionner',
-                'attr' => ['class' => 'form-select-medium'],
-                'class' => Vendors::class,
-                'query_builder' => function (EntityRepository $er){
-                                    return $er->createQueryBuilder('v')
-                                    ->orderBy('v.name', 'ASC');},
-                'choice_label' => 'name',
-                'required' => true,
-            ])
+
             ->add('gaz', ChoiceType::class, [
                 'label' => false,
                 'attr' => ['class' => 'form-select-medium'],
@@ -60,6 +45,22 @@ class NewContainersType extends AbstractType
 
             if( !$data->getId()){
                 $form
+            ->add('number', IntegerType::class, [
+                'label' => false,
+                'attr' => ['class' => 'form-the-line-medium'],
+                'required'=> true,
+            ])
+            ->add('vendor', EntityType::class, [
+                'label' => false,
+                'placeholder' => 'Sélectionner',
+                'attr' => ['class' => 'form-select-medium'],
+                'class' => Vendors::class,
+                'query_builder' => function (EntityRepository $er){
+                                    return $er->createQueryBuilder('v')
+                                    ->orderBy('v.name', 'ASC');},
+                'choice_label' => 'name',
+                'required' => true,
+            ])
                 ->add('initial_weight', NumberType::class, [
                     'label' => false,
                     'attr' => ['class' => 'form-the-line-medium'],
