@@ -29,7 +29,7 @@
                                             {% set valPercent = (val * 100) / nc.initialWeight %}
                                         {% endif %}
                                     {% endfor %}
-                                <i> Quantité restante:</i> <span class="font-bold">{{val}}</span> kg   
+                                <i> Quantité restante:</i> <span class="font-bold">{{val|format_number({rounding_mode: 'floor'})}}</span> kg   
                             </p>
                         </div>
                         <div class="bottle-card-buttons-action">

@@ -26,7 +26,7 @@
                                                     {% set val = val + vr.totalQ %} 
                                                 {% endif %}
                                         {% endfor %}
-                                    <i> Quantité chargée:</i> <span class="font-bold">{{val}} / {{rc.totalWeight}} </span> kg   
+                                    <i> Quantité chargée:</i> <span class="font-bold">{{val|format_number({rounding_mode: 'floor'})}} / {{rc.totalWeight}} </span> kg   
                                 </p>
                         </div>
                         <div class="bottle-card-buttons-action">
